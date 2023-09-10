@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Register</title>
+<link rel="stylesheet" href="MyStyle.css">
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Selecciona el enlace por su ID
+    var registroLink = document.getElementById("registroLink");
+  
+    // Agrega un evento de clic al enlace
+    registroLink.addEventListener("click", function (event) {
+      event.preventDefault(); // Evita el comportamiento predeterminado del enlace
+      window.location.href = "inicio.html"; // Redirige a otro.html
+    });
+  });
+  </script>
+</head>
+<body>
+
+<center><h2>Registro</h2></center>
+
+<form action="chat.html" method="post">
+ 
+  
+  <div class="container">
+    <label for="uname"><b>Nombre de Usuario:</b></label>
+    <input type="text" placeholder="Ingrese su nombre de usuario" name="uname" required>
+        
+    <label for="nombre"><b>Nombre:</b></label>
+    <input type="text" placeholder="Ingrese su nombre" name="nombre" required>
+
+    <label for="apellido"><b>Apellido: </b></label>
+    <input type="text" placeholder="Ingrese su Apellido" name="apellido">
+
+    <label for="telefono"><b>Numero de telefono: </b></label>
+    <div>
+      <!-- Agrega el combo box de ladas de teléfono -->
+      <select name="lada" id="lada">
+        <option value="001">+001</option>
+        <option value="002">+002</option>
+        <option value="003">+003</option>
+        <!-- Agrega más opciones según sea necesario -->
+      </select>
+      <input type="text" placeholder="Ingrese su numero de telefono" name="telefono" required>
+    </div>
+    <label for="psw"><b>Clave de paso: </b></label>
+    <input type="password" placeholder="Ingresar Clave de paso" name="psw" required>
+        
+
+
+    <button type="submit">Registrar</button>
+    
+    
+    <span class="regs"><a href="#" id="registroLink">Regresar a Inicio</a></span>
+   
+ 
+    
+  </div>
+
+
+</form>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login</title>
+<link rel="stylesheet" href="MyStyle.css">
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Selecciona el enlace por su ID
+    var registroLink = document.getElementById("registroLink");
+  
+    // Agrega un evento de clic al enlace
+    registroLink.addEventListener("click", function (event) {
+      event.preventDefault(); // Evita el comportamiento predeterminado del enlace
+      window.location.href = "Register.html"; // Redirige a otro.html
+    });
+  });
+  </script>
+  
+</head>
+<body>
+
+<center><h2>Hola bisonte!</h2></center>
+
+<form action="chat.html" method="post">
+  <div class="imgcontainer">
+    <img src="bisonte.png" alt="Avatar" class="avatar">
+  </div>
+
+  <div class="container">
+    <label for="uname"><b>Nombre de Usuario:</b></label>
+    <input type="text" placeholder="Ingrese su nombre de usuario" name="uname" required>
+
+    <label for="psw"><b>Clave de paso: </b></label>
+    <input type="password" placeholder="Ingresar Clave de paso" name="psw" required>
+        
+    <button type="submit">Ingresar</button>
+  
+   
+    <span class="regs">¿No está <a href="#" id="registroLink">Registrado</a>?</span>
+
+   
+  
+    
+ 
+    
+  </div>
+
+
+</form>
+
+</body>
+</html>
