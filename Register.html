@@ -4,6 +4,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Register</title>
 <link rel="stylesheet" href="MyStyle.css">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="Estilo/Start Project Login Form HTML CSS/style.css">
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     // Selecciona el enlace por su ID
@@ -19,38 +21,71 @@
 </head>
 <body>
 
-<center><h2>Registro</h2></center>
+
 
 <form action="chat.html" method="post">
  
   
-  <div class="container">
-    <label for="uname"><b>Nombre de Usuario:</b></label>
-    <input type="text" placeholder="Ingrese su nombre de usuario" name="uname" required>
-        
-    <label for="nombre"><b>Nombre:</b></label>
-    <input type="text" placeholder="Ingrese su nombre" name="nombre" required>
-
-    <label for="apellido"><b>Apellido: </b></label>
-    <input type="text" placeholder="Ingrese su Apellido" name="apellido">
-
-    <label for="telefono"><b>Numero de telefono: </b></label>
-    <div>
-      <!-- Agrega el combo box de ladas de teléfono -->
-      <select name="lada" id="lada">
-        <option value="001">+001</option>
-        <option value="002">+002</option>
-        <option value="003">+003</option>
-        <!-- Agrega más opciones según sea necesario -->
-      </select>
-      <input type="text" placeholder="Ingrese su numero de telefono" name="telefono" required>
+  <div class="container-Registro">
+    <div class="imgcontainerRegistro">
+      <img src="bisonte.png" alt="Avatar" class="avatarRegitrso">
+      <center><h2 class = "RegistroTitulo">Registro</h2></center>
     </div>
-    <label for="psw"><b>Clave de paso: </b></label>
-    <input type="password" placeholder="Ingresar Clave de paso" name="psw" required>
+   
+    <form action="">
+
+      <!-- nombre usuario -->
+      <div class="input-box-Registro">
+        <label class="custom-label" for="uname"><b>Nombre de Usuario:</b></label>
+        <input type="text" placeholder="Ingrese su nombre de usuario" name="uname" required>
+        <i class='bx bxs-user'></i>
+      </div>
+      <!-- nombre usuario -->
+          <!--Nombre  -->
+          <div class="input-box-Registro">
+            <label for="nombre"><b>Nombre:</b></label>
+            <input type="text" placeholder="Ingrese su nombre" name="nombre" required>
+            <i class='bx bxs-user-circle'></i>
+          </div>
+          <!--Nombre  -->
+          <!--Apellido  -->
+          <div class="input-box-Registro">
+            <label for="apellido"><b>Apellido: </b></label>
+            <input type="text" placeholder="Ingrese su Apellido" name="apellido">      
+              <i class='bx bxs-user-circle'></i>
+          </div>
+          <!--Apellido  -->
+          <!--Telefono  -->
+          <div class="input-box-Registro">
+            <label for="telefono"><b>Numero de telefono: </b></label>
+
+        <!-- Agrega el combo box de ladas de teléfono -->
+        <select class ="ComboOpciones" name="lada" id="lada">
+          <option value="001">+001</option>
+          <option value="002">+002</option>
+          <option value="003">+003</option>
+          <!-- Agrega más opciones según sea necesario -->
+        </select>
+        <input type="text" placeholder="Ingrese su numero de telefono" name="telefono" required>
+        <i class='bx bxs-phone'></i>
+          </div>
+          <!--Telefono  -->
+                <!--Clave  -->
+                <div class="input-box-Registro">
+                  <label for="psw"><b>Clave de paso: </b></label>
+                  <input type="password" placeholder="Ingresar Clave de paso" name="psw" required>
+                  <i class='bx bxs-lock-alt' ></i>
+                </div>
+                <!--Clave  -->
+      
         
 
+    </form>
 
-    <button type="submit">Registrar</button>
+  
+
+
+    <button  class = "btnRegistrar" type="submit">Registrar</button>
     
     
     <span class="regs"><a href="#" id="registroLink">Regresar a Inicio</a></span>

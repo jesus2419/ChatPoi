@@ -4,6 +4,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Login</title>
 <link rel="stylesheet" href="MyStyle.css">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="Estilo/Start Project Login Form HTML CSS/style.css">
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     // Selecciona el enlace por su ID
@@ -20,21 +22,39 @@
 </head>
 <body>
 
-<center><h2>Hola bisonte!</h2></center>
+
 
 <form action="chat.html" method="post">
-  <div class="imgcontainer">
-    <img src="bisonte.png" alt="Avatar" class="avatar">
-  </div>
 
-  <div class="container">
-    <label for="uname"><b>Nombre de Usuario:</b></label>
-    <input type="text" placeholder="Ingrese su nombre de usuario" name="uname" required>
 
-    <label for="psw"><b>Clave de paso: </b></label>
-    <input type="password" placeholder="Ingresar Clave de paso" name="psw" required>
+  <div class="container"> 
+
+    <form action="">
+      <div class="imgcontainer">
+        <img src="bisonte.png" alt="Avatar" class="avatar">
+      </div>
+      <center><h2>Hola Bisonte!</h2></center>
+      
+     
+      <div class="input-box">
+        <label class="custom-label"for="uname"><b>Nombre de Usuario:</b></label>
+        <input type="text" placeholder="Ingrese su nombre de usuario" name="uname" required>
+        <i class='bx bxs-user'></i>
+  
+      </div>
+      
+     
+      <div class="input-box">
+        <label class="custom-label"for="psw"><b>Clave de paso: </b></label>
+        <input type="password" placeholder="Ingresar Clave de paso" name="psw" required>
+        <i class='bx bxs-lock-alt' ></i>
+      </div>
+
+    </form>
+
+    
         
-    <button type="submit">Ingresar</button>
+    <button type="submit" class = "btn">Ingresar</button>
   
    
     <span class="regs">¿No está <a href="#" id="registroLink">Registrado</a>?</span>

@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat App</title>
+
+    <link rel="stylesheet" type="text/css" href="MyStyle.css">
+    
     <script>
         document.addEventListener("DOMContentLoaded", function () {
           // Selecciona el enlace por su ID
@@ -26,14 +29,16 @@
         }
         */
         html{
-  background: rgb(238,174,202);
-background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+  background: var(--gris-bisonte);
+background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 100%);
 }
         .chat-container {
+            
             display: flex;
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
+            position:static;
         }
 
         .chat-sidebar {
@@ -97,6 +102,10 @@ background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 
     </style>
 </head>
 <body>
+    <div class="center-container">
+
+        
+    </div>
     <div class="chat-container">
         <div class="chat-sidebar">
             <h3>  <img src="imagenes_usuarios/patricio.jpg" alt="Chat 1" class="chat-icon">patricio 
