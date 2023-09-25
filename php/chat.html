@@ -108,20 +108,20 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
     </div>
     <div class="chat-container">
         <div class="chat-sidebar">
-            <h3>  <img src="imagenes_usuarios/patricio.jpg" alt="Chat 1" class="chat-icon">patricio 
+            <h3>  <img src="/imagenes_usuarios/patricio.jpg" alt="Chat 1" class="chat-icon">patricio 
                 <span class="regs"> <a href="#" id="registroLink">Cerrar sesión</a></span></h3>
             <h2>Bandeja de Chats</h2>
            
             <ul class="chat-list">
                 <li class="chat-list-item" id="chat1">
-                    <img src="imagenes_usuarios/gatitochamba.jpg" alt="Chat 1" class="chat-icon">
+                    <img src="/imagenes_usuarios/gatitochamba.jpg" alt="Chat 1" class="chat-icon">
                     Gato chamba                </li>
                 <li class="chat-list-item" id="chat2">
-                    <img src="imagenes_usuarios/gatoGuitarra.jpg" alt="Chat 2" class="chat-icon">
+                    <img src="/imagenes_usuarios/gatoGuitarra.jpg" alt="Chat 2" class="chat-icon">
                     Gato guitarra
                 </li>
                 <li class="chat-list-item" id="chat3">
-                    <img src="imagenes_usuarios/bob.jpg" alt="Chat 3" class="chat-icon">
+                    <img src="/imagenes_usuarios/bob.jpg" alt="Chat 3" class="chat-icon">
                     Bob esponja
                 </li>
             </ul>
@@ -154,9 +154,9 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
             chat1.addEventListener("click", function () {
                 var contenidoChat1 = `
                     <h2>Chat Actual</h2>
-                    <div class="chat-message"><img src="imagenes_usuarios/gatitochamba.jpg" alt="Chat 1" class="chat-icon">Gato chamba: ¡Hola!</div>
+                    <div class="chat-message"><img src="/imagenes_usuarios/gatitochamba.jpg" alt="Chat 1" class="chat-icon">Gato chamba: ¡Hola!</div>
                     <div class="chat-message">Tú: ¿Cómo estás?</div>
-                    <div class="chat-message"><img src="imagenes_usuarios/gatitochamba.jpg" alt="Chat 1" class="chat-icon">Gato chamba: Bien, gracias. ¿Y tú?</div>
+                    <div class="chat-message"><img src="/imagenes_usuarios/gatitochamba.jpg" alt="Chat 1" class="chat-icon">Gato chamba: Bien, gracias. ¿Y tú?</div>
                     <div class="chat-message">Tú: Muy bien, gracias por preguntar.</div>
                     <input type="text" class="chat-input" placeholder="Escribe tu mensaje aquí">
                     <button class="send-button">Enviar</button>
@@ -167,7 +167,7 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
             chat2.addEventListener("click", function () {
                 var contenidoChat2 = `
                     <h2>Chat Actual</h2>
-                    <div class="chat-message"> <img src="imagenes_usuarios/gatoGuitarra.jpg" alt="Chat 2" class="chat-icon">Gato guitarra: Hola, soy el gato guitarra.</div>
+                    <div class="chat-message"> </img src="imagenes_usuarios/gatoGuitarra.jpg" alt="Chat 2" class="chat-icon">Gato guitarra: Hola, soy el gato guitarra.</div>
                     <div class="chat-message">Tú: ¿Cómo puedo ayudarte?</div>
                     <input type="text" class="chat-input" placeholder="Escribe tu mensaje aquí">
                     <button class="send-button">Enviar</button>
@@ -178,7 +178,7 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
             chat3.addEventListener("click", function () {
                 var contenidoChat3 = `
                     <h2>Chat Actual</h2>
-                    <div class="chat-message"> <img src="imagenes_usuarios/bob.jpg" alt="Chat 3" class="chat-icon">Bob esponja: ¡Hola soy bob esponja!</div>
+                    <div class="chat-message"> <img src="/imagenes_usuarios/bob.jpg" alt="Chat 3" class="chat-icon">Bob esponja: ¡Hola soy bob esponja!</div>
                     <input type="text" class="chat-input" placeholder="Escribe tu mensaje aquí">
                     <button class="send-button">Enviar</button>
                 `;

@@ -23,12 +23,20 @@ justify-content: center;
 align-items: center;
 min-height: 100vh;
 background: radial-gradient(circle, var(--azul-bisonte) 50%, var(--rojo-bisonte) 100%);
-background: url(/Fondo.jpg) ;
+background: url(/img/Fondo.jpg) ;
 background-size:cover;/* Ajusta la imagen para cubrir el contenedor */
 background-repeat: no-repeat; /* Evita la repetición de la imagen */
 background-position: center; /* Centra la imagen en el contenedor */
+font-family: Arial, Helvetica, sans-serif;
 }
-
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
 .container{ /*wrapper*/
   position: relative;
   width: 420px;
