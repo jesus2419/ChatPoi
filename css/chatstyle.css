@@ -1,6 +1,46 @@
+@import url('ColoresyDemas.css');
+
+/* sub menu */
+ .chat-sidebar nav {
+    background-color: var(--azul-bisonteObscuro); /* Color de fondo del menú de navegación */
+    padding: 8px; /* Espaciado interno del menú de navegación */
+    text-align: right; /* Alinea el contenido del <nav> a la derecha */
+    margin: -20px 0 10px 0;
+    
+   
+}
+
+/* sub menu */
+
+
  /* styles.css */
+ * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* font-family: "Poppins", sans-serif; */
+}
 body {
     font-family: Arial, Helvetica, sans-serif;
+    /* display:  flex; */
+/* justify-content: center; */
+/* align-items: center; */
+min-height: 100vh;
+background: radial-gradient(circle, var(--azul-bisonte) 50%, var(--rojo-bisonte) 100%);
+background: url(/img/Fondo.jpg) ;
+background-size:cover;/* Ajusta la imagen para cubrir el contenedor */
+background-repeat: no-repeat; /* Evita la repetición de la imagen */
+background-position: center; /* Centra la imagen en el contenedor */
+
+}
+.chat-container {
+
+    display: flex;
+    max-width: 1181px;
+    margin: 0 auto;
+    padding: 20px;
+    position:static;
+
 }
 
 form {
@@ -17,7 +57,7 @@ input[type=text], input[type=password] {
 }
 
 button {
-    background-color: #18b40a;
+    background-color: var(--azul-bisonteObscuro);
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -78,4 +118,240 @@ span.psw {
     .cancelbtn {
         width: 100%;
     }
+}
+
+
+/* panel izquierdo */
+.grupos-list-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+}
+.grupos-list {
+    list-style: none;
+    padding: 0;
+}
+
+/* Estilos para los elementos <li> en estado hover */
+.grupos-list-item:hover {
+    background-color: #cac9c9; /* Cambia el color de fondo cuando se pasa el mouse */
+}
+.chat-list-item:hover {
+    background-color: #cac9c9; /* Cambia el color de fondo cuando se pasa el mouse */
+}
+.chat-list .estado-usuario.enlinea {
+   
+    background-color: #49DD45;
+}
+.chat-list .estado-usuario {
+    position: initial;
+    display: block;
+    width: 15px;
+    height: 15px;
+    background-color: #ADADAD;
+    bottom: 0;
+    right: 0;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+.chat-list .estado-usuario span {
+    display: block;
+}
+
+.usuario-info-chat {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px; /* Ajusta el espacio entre la imagen y el texto según tus preferencias */
+}
+
+.chat-icon {
+    vertical-align: middle;
+}
+.usuario-seleccionado {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid #E7E7E7;
+    padding-bottom: 15px;
+}
+.mensaje .avatar, .usuario-seleccionado .avatar, .usuario .avatar {
+    display: block;
+    width: 50px;
+    height: 50px;
+    margin-right: 1rem;
+    position: relative;
+    background-color: #E4E8F0;
+    border-radius: 50%;
+}
+.chat-main .avatar img {
+    border-radius: 50%;
+}
+.chat-main img {
+    width: 100%;
+}
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+.usuario-seleccionado .cuerpo span:nth-child(2), .usuario .cuerpo span:nth-child(2) {
+    font-size: .8em;
+    color: #929292;
+}
+.usuario-seleccionado .cuerpo span {
+    display: block;
+}
+.panel-escritura .textarea textarea, .usuario-seleccionado .cuerpo {
+    flex-grow: 1;
+    flex-basis: 0;
+}
+.usuario-seleccionado .opciones {
+    display: block;
+    width: auto;
+    margin-left: 1rem;
+}
+.usuario-seleccionado .opciones ul {
+    list-style: none;
+    display: flex;
+}
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+    margin-left: 3px;
+}
+.usuario-seleccionado .opciones button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 0;
+    cursor: pointer;
+    box-shadow: 0 0 12px rgba(0, 0, 0, .05);
+}
+button, [type="button"], [type="reset"], [type="submit"] {
+    -webkit-appearance: button;
+}
+
+.panel-chat {
+    display: block;
+    overflow-y: auto;
+    padding-right: 15px;
+    margin-bottom: 1rem;
+}
+
+.mensaje {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+    justify-content: flex-start;
+}
+.mensaje .avatar {
+    width: 35px;
+    height: 35px;
+    margin-right: 1rem;
+}
+
+.body-chat .avatar img {
+    border-radius: 50%;
+}
+.mensaje img {
+    margin-bottom: 0.5rem;
+}
+.body-chat img {
+    width: 100%;
+}
+
+.mensaje .cuerpo {
+    font-size: 0.85em;
+    padding: 10px;
+    background-color: #EEEEEE;
+    border-radius: 8px;
+    position: relative;
+    width: calc(100% - 35px - 1rem - 5rem);
+}
+.mensaje .texto {
+    display: block;
+    position: relative;
+}
+.mensaje .cuerpo .tiempo {
+    position: absolute;
+    display: block;
+    bottom: -2.1rem;
+    color: #919191;
+    width: 100%;
+}
+.mensaje .opciones-msj {
+    position: absolute;
+    right: -35px;
+    top: 0;
+    list-style: none;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.mensaje.left {
+    justify-content: flex-end;
+}
+.mensaje.left .tiempo {
+    text-align: right;
+}
+.panel-escritura {
+    display: block;
+}
+.panel-escritura .textarea {
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 1px solid #E7E7E7;
+    padding-top: 1rem;
+}
+.panel-escritura .textarea textarea, .panel-escritura .opcines {
+    margin-right: 0.5rem;
+}
+.panel-escritura .textarea textarea {
+    border: 0;
+    background-color: #F2F2F2;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+
+textarea {
+    overflow: auto;
+}
+button, input, optgroup, select, textarea {
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+}
+.panel-escritura button {
+    border: 0;
+    background-color: #E3E3E3;
+    display: inline-flex;
+    width: 35px;
+    height: 35px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+}
+button, select {
+    text-transform: none;
+}
+button, input {
+    overflow: visible;
+}
+button, input, optgroup, select, textarea {
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+}
+
+.panel-escritura button.enviar {
+    background-color: var(--azul-bisonte-barralateral);
+    color: #fff;
 }

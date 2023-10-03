@@ -1,14 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
-:root {
-  --azul-bisonte: #02318b;
-  --gris-bisonte:#a8a7a7;
-  --rojo-bisonte: #751314;
-  --azul-bisonte-barralateral: rgb(34, 62, 114);
-  --bisonte-barralateralderecha: #460b0c;
-  --bisonte-rojizo-Letras: #440808;
-  --gris-Generico-tabla: #dee2e6;
-  --gris-Generico: #495057;
-}
+@import url('ColoresyDemas.css');
 /*https://coolors.co/02318b-751314-a8a7a7-495057-224fb4*/
 * {
   margin: 0;
