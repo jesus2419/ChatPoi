@@ -355,3 +355,12 @@ button, input, optgroup, select, textarea {
     background-color: var(--azul-bisonte-barralateral);
     color: #fff;
 }
+
+.avatar {
+    display: flex; /* Utiliza flexbox */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    width: 100px; /* Ancho del contenedor */
+    height: 100px; /* Alto del contenedor */
+    border: 1px solid #ccc; /* Borde para visualizar el contenedor */
+  }
