@@ -77,3 +77,61 @@ function mostrarVentanaEmergenteCrearGrupos() {
 function cerrarVentanaEmergenteCrearGrupos() {
     document.getElementById("miVentanaEmergenteCrearGrupos").style.display = "none";
 }
+
+// mostrar imagen de grupo
+function mostrarImagen() {
+    var input = document.getElementById('fotoGrupo');
+    var imagenMostrada = document.getElementById('imagenMostrada');
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            imagenMostrada.src = e.target.result;
+            imagenMostrada.style.display = 'block';
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+
+//:::::::::::::::::::::::::::::::::::ventan de miembros
+function mostrarVentanaEmergenteMiembros() {
+    document.getElementById("miVentanaEmergenteMiembros").style.display = "block";
+}
+/* eliminar pantalla crear grupo */ 
+function cerrarVentanaEmergenteMiembros() {
+    document.getElementById("miVentanaEmergenteMiembros").style.display = "none";
+}
+
+//pagina sub grupos
+
+
+//:::::::::::::::::::::::::::::::::::crear subgrupo ventana emergente
+/* mostrar pantalla crear grupo */ 
+function mostrarVentanaEmergenteSubCrearGrupos() {
+    document.getElementById("miVentanaEmergenteSubCrearGrupos").style.display = "block";
+}
+/* eliminar pantalla crear grupo */ 
+function cerrarVentanaEmergenteSubCrearGrupos() {
+    document.getElementById("miVentanaEmergenteSubCrearGrupos").style.display = "none";
+}
+//******************* agragar miembros*/
+
+/* mostrar pantalla agragar miembros  */ 
+function mostrarVentanaEmergenteAgregarMimbros_SubGrupos() {
+    document.getElementById("miVentanaEmergenteAgregarMimbros_SubGrupos").style.display = "block";
+}
+/* eliminar pantalla agragar miembros */ 
+function cerrarVentanaEmergenteAgregarMimbros_SubGrupos() {
+    document.getElementById("miVentanaEmergenteAgregarMimbros_SubGrupos").style.display = "none";
+}
+//******************* Miembros_SubGrupos*/
+function mostrarVentanaEmergenteMiembros_SubGrupos() {
+    document.getElementById("miVentanaEmergenteMiembros_SubGrupos").style.display = "block";
+}
+/* eliminar pantalla crear grupo */ 
+function cerrarVentanaEmergenteMiembros_SubGrupos() {
+    document.getElementById("miVentanaEmergenteMiembros_SubGrupos").style.display = "none";
+}

@@ -111,3 +111,45 @@ input[type="search"][placeholder="Buscar usuario"] {
     background-color: #E4E8F0;
     border-radius: 50%;
 }
+
+.AlinearText{
+    text-align: center; /* Alinea los divs en el centro si es necesario */
+
+}
+.AlinearText > div {
+    display: inline-block;
+    width: 50%; /* Puedes ajustar el ancho según tus necesidades */
+    box-sizing: border-box; /* Para que el ancho incluya el padding y el borde */
+}
+/* crear grupo datos */
+.form-group {
+    margin-bottom: 20px;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+#imagenMostrada {
+   /*  max-width: 100%; Ajusta el ancho máximo de la imagen */
+     /*margin-top: 10px; Agrega espacio superior */
+    border: 1px solid #ccc; /* Agrega un borde */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Agrega una sombra */
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+
+.tamañoImagengrupoPanel{
+    height: 50px;
+}
+.tamañoImagengrupoPanel2{
+    height: 33px;
+}

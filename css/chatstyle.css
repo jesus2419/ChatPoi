@@ -186,6 +186,7 @@ span.psw {
 }
 .chat-main .avatar img {
     border-radius: 50%;
+   
 }
 .chat-main img {
     width: 100%;
@@ -364,3 +365,30 @@ button, input, optgroup, select, textarea {
     height: 100px; /* Alto del contenedor */
     border: 1px solid #ccc; /* Borde para visualizar el contenedor */
   }
+/* buscador */
+  .input-buscar {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+input[type="search"][placeholder="Buscar usuario"] {
+    display: block;
+    width: 100%;
+    background-color: #dddbdb;
+    border: 0;
+    padding: 8px 15px;
+    border-radius: 2rem;
+    
+}
+.button-search {
+    background-color: var(--azul-bisonteObscuro);
+    /* border: none; */
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+    border-radius: 30px;
+    width: 35px;
+    height: 35px;
+}
