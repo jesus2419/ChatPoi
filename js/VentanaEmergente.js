@@ -135,3 +135,21 @@ function mostrarVentanaEmergenteMiembros_SubGrupos() {
 function cerrarVentanaEmergenteMiembros_SubGrupos() {
     document.getElementById("miVentanaEmergenteMiembros_SubGrupos").style.display = "none";
 }
+//******************* Crear _Tareas*/
+function mostrarVentanaEmergenteTareas() {
+    document.getElementById("miVentanaEmergenteTareas").style.display = "block";
+}
+/* eliminar pantalla crear grupo */ 
+function cerrarVentanaEmergenteTareas() {
+    document.getElementById("miVentanaEmergenteTareas").style.display = "none";
+}
+
+
+//******************* AsignarInsignia*/
+function mostrarVentanaEmergenteAsignarInsignia() {
+    document.getElementById("miVentanaEmergenteAsignarInsignia").style.display = "block";
+}
+/* eliminar pantalla crear grupo */ 
+function cerrarVentanaEmergenteAsignarInsignia() {
+    document.getElementById("miVentanaEmergenteAsignarInsignia").style.display = "none";
+}

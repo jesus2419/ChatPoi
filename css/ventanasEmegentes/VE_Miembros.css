@@ -153,3 +153,33 @@ textarea {
 .tamañoImagengrupoPanel2{
     height: 33px;
 }
+
+/* ::::::::::::::::: tablas */
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px auto;
+}
+
+table, th, td {
+    border: 1px solid #cccccc;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: var(--azul-bisonteObscuro);
+    color: #fff;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
