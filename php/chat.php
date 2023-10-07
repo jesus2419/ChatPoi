@@ -114,15 +114,15 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
 <body>
     <header>
         <a href="#" class ="imagenUsuario">
-            <img src="../img/user.jpeg" alt = "User" >
-            <h3 id="NombreUsurio">User</h3>
+            <img src="../img/user.jpeg" alt = "User"  >
+            <h3 id="NombreUsurio"><?php echo $_GET['username']; ?></h3>
         </a>
         <nav>
             <a id="GuposBarraSuperior" class ="nav_link" href="../php/Grupos.html">Grupos</a>
             <a id="ChatBarraSuperior" class ="nav_link selected " href="../php/chat.html">Chats</a>
             <a id="InsigniasBarraSuperior" class ="nav_link" href="#">Insignias</a>
             <a id="TareasBarraSuperior" class ="nav_link" href="#">Tareas</a>
-            <a class ="nav_link" href="#">
+            <a class ="nav_link" href="inicio.html">
                 <i class='bx bxs-log-out bx-flip-horizontal' ></i>
             </a>
         </nav>

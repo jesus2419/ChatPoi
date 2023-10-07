@@ -3,12 +3,12 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Login</title>
-<link rel="stylesheet" href="/css/MyStyle.css">
+<link rel="stylesheet" href="../css/MyStyle.css">
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-<link rel="stylesheet" href="/css/Inicio-Registro.css">
+<link rel="stylesheet" href="../css/Inicio-Registro.css">
 
  <!-- icono de la pagina -->
- <link rel="icon" href="/icon/bisonte.ico" type="image/x-icon">
+ <link rel="icon" href="../icon/bisonte.ico" type="image/x-icon">
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
@@ -28,14 +28,14 @@
 
 
 
-<form action="chat.html" method="post">
+<form action="procesar_login.php" method="post">
 
 
   <div class="container"> 
 
-    <form action="">
+    <form action="procesar_login.php" method="post">
       <div class="imgcontainer">
-        <img src="/img/bisonte.png" alt="Avatar" class="avatar">
+        <img src="../img/bisonte.png" alt="Avatar" class="avatar">
       </div>
       <center><h2>Hola Bisonte!</h2></center>
       
@@ -50,7 +50,7 @@
      
       <div class="input-box">
         <label class="custom-label"for="psw"><b>Clave de paso: </b></label>
-        <input type="password" placeholder="Ingresar Clave de paso" name="psw" required>
+        <input type="password" placeholder="Ingresar Clave de paso" name="password" id="password"  required>
         <i class='bx bxs-lock-alt' ></i>
       </div>
 
@@ -61,7 +61,7 @@
     <button type="submit" class = "btn">Ingresar</button>
   
    
-    <span class="regs">¿No está <a href="#" id="registroLink">Registrado</a>?</span>
+    <span class="regs">No se ah <a href="#" id="registroLink">Registrado</a>?</span>
 
    
   
