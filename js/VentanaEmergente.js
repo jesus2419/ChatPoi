@@ -13,6 +13,8 @@ function enviarDatos() {
     var nombre = document.getElementById("nombre").value;
     var email = document.getElementById("email").value;
     alert("Nombre: " + nombre + "\nEmail: " + email);
+    window.location.href = '../proy/Grupos_chat.php';
+
     cerrarVentanaEmergente(); // Cierra la ventana después de procesar los datos (puedes personalizar esto)
 }
 

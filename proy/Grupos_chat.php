@@ -115,17 +115,26 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
     </style>
 </head>
 <body>
+    <?php
+                 // Realizar la consulta a la base de datos
+                  
+                  $username = $_GET['username'];
+                  $id_grupo = $_GET['id_grupo'];
+                  $grupo = $_GET['grupo'];
+
+                  
+                ?>
     <header>
         <a href="#" class ="imagenUsuario">
             <img src="../img/user.jpeg" alt = "User" >
-            <h3 id="NombreUsurio">User</h3>
+            <h3 id="NombreUsurio"><?php echo $username; ?></h3>
         </a>
         <nav>
-            <a id="GuposBarraSuperior" class ="nav_link" href="#">Grupos</a>
-            <a id="ChatBarraSuperior" class ="nav_link selected " href="#">Chats</a>
+            <a id="GuposBarraSuperior" class ="nav_link" href="Grupos.php?username=<?php echo urlencode($_GET['username']); ?>">Grupos</a>
+            <a id="ChatBarraSuperior" class ="nav_link selected " href="chat.php?username=<?php echo urlencode($usuario); ?>">Chats</a>
             <a id="InsigniasBarraSuperior" class ="nav_link" href="#">Insignias</a>
             <a id="TareasBarraSuperior" class ="nav_link" href="#">Tareas</a>
-            <a class ="nav_link" href="#">
+            <a class ="nav_link" href="inicio.php">
                 <i class='bx bxs-log-out bx-flip-horizontal' ></i>
             </a>
         </nav>
@@ -135,77 +144,7 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
     
     <div class="chat-container">
         
-        <div class="chat-sidebar">
-                
-                <div class="usuario-seleccionado">
-                    <div class="cuerpo">
-                        <!-- <span>Grupos</span> -->
-                        <!-- <span>Activo - Escribiendo...</span> -->
-                    </div>
-                    <div class="opciones">
-                        <ul> 
-                            <li>
-                                <button type="button" onclick="mostrarVentanaEmergenteCrearGrupos()" style="width: 90px; border-radius: 10% ;"> <h6>Crear Grupo</h6><i class='bx bx-plus'></i>
-                            </button>
-                            </li> 
-    
-                        </ul>
-                    </div>
-                </div>
-
-            <!-- <nav id="Menu">
-                <div id="ChatMenu">
-                    <a class ="nav_link" href="#">Chat</a>
-                </div>     -->
-                <!-- aqui parece el menu segun hemos selecionado en la barra superior 
-                
-            </nav>-->
-
-            <!-- <h3>  <img src="/imagenes_usuarios/patricio.jpg" alt="Chat 1" class="chat-icon">patricio 
-                <span class="regs"> <a href="#" id="registroLink">Cerrar sesión</a></span></h3>
-            <h2>Bandeja de Chats</h2> -->
-           
-            <ul class="chat-list">
-                <li class="chat-list-item" id="chat1">
-                    
-                    
-                    
-                    <div class="usuario-info-chat">
-                        <img src="../img_grupos/cruzcruz.jpg" alt="Chat 1" class="chat-icon">
-                    <!-- <span class="estado-usuario enlinea"></span> -->
-                    <!-- <i class='bx bxs-group' ></i> -->
-
-                    </div>
-                    <span> Grupo 1</span> 
-                    
-                </li>
-                <li class="chat-list-item" id="chat2">
-                    <div class="usuario-info-chat">
-                        <img src="../img_grupos/gatitoPuño.jpg" alt="Chat 2" class="chat-icon">
-                        <!-- <span class="estado-usuario enlinea"></span> -->
-                        <!-- <i class='bx bxs-group' ></i> -->
-                    </div>
-                    <span>Grupo 2</span>
-                </li>
-                <li class="chat-list-item" id="chat3">
-                    <div class="usuario-info-chat">
-                        <img src="../img_grupos/ranita.jpg" alt="Chat 3" class="chat-icon">
-                        <!-- <span class="estado-usuario desconectado"></span> -->
-                        <!-- <i class='bx bxs-group' ></i> -->
-                    </div>
-                    <span>Grupo 3</span>
-                    
-                </li>
-            </ul>
-
-
-
-
-            <div id="Grupos_list_container">
-                <!-- Aquí se mostrará la lista de grupos -->
-            </div>
-            
-        </div>
+        
         <div class="chat-main">
             
             <div id="chat-content">
@@ -218,20 +157,12 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
                     <!-- <i class='bx bxs-group'   ></i> -->
                 </div>
                 <div class="cuerpo">
-                    <span>Grupo 1</span>
+                    <span><?php echo $grupo; ?></span>
                     <!-- <span>Activo - Escribiendo...</span> -->
                 </div>
                 <div class="opciones">
                     <ul> 
-                        <!-- <li >
-                            <button type="button" style="background-color: rgba(17, 40, 102, 0.719);"#007bff title="Muro"><i class='bx bx-home' ></i>
-                            </li>  -->
-                        <!-- <li>
-                            <button type="button" title="Agregar Miembro"><i class='bx bxs-user-plus'></i>
-                        </li>
-                        <li>
-                            <button type="button" title="Eliminar Miembro"><i class='bx bxs-user-minus'></i>
-                        </li> -->
+                        
                         <li >
                             <button onclick="mostrarVentanaEmergente()"  type="button"  title="Agregar Membros" ><i class='bx bxs-user-plus'></i>
                                 
@@ -239,9 +170,7 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
                         <li >
                             <button onclick="mostrarVentanaEmergenteMiembros()" type="button"  title="Miembros" ><i class='bx bx-user'></i>
                         </li>  
-                        <!-- <li >
-                            <button type="button"  title="Crear SubGrupos"><i class='bx bx-list-plus'></i>
-                        </li>  -->
+                       
                         <li >
                             <!-- <button type="button"  title="SubGrupos"  ></button><i class='bx bx-list-ul'></i> -->
                                 
@@ -262,90 +191,162 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
                 </div>
             </div>
             <div class="panel-chat">
-                <!-- <div id="home">
-                <div class="publiacion">
-                        <div class="avatar">
-                        <img src="/imagenes_usuarios/gatitochamba.jpg" alt="img">
-                        
-                        </div>
-                    <div class="cuerpo">
-                        <span style=" font-weight: bold;">Grupo 1</span>
-
-                        <div class="texto">
-                           Cosas Grupo 1
-                             <span class="tiempo">
-                                <i class="bx bx-time-five"></i>
-                                Hace 5 min
-                            </span> 
-                        </div>
-
-                    </div>
-                </div>
-                <div class="publiacion">
-                    <div class="avatar">
-                    <img src="/imagenes_usuarios/gatitochamba.jpg" alt="img">
-                    
-                    </div>
-                <div class="cuerpo">
-                    <span style=" font-weight: bold;">Grupo 1</span>
-
-                    <div class="texto">
-                       Cosas Grupo 1
-                         <span class="tiempo">
-                            <i class="bx bx-time-five"></i>
-                            Hace 5 min
-                        </span> 
-                    </div>
-
-                </div>
                 
-                </div>
-
-
-                </div> -->
                 <div id="miembros">
-                    <div class="publiacion">
-                            <div class="avatar ">
-                            <img class="tamañoImagengrupoPanel2" src="../img_grupos/gatitoPuño.jpg" alt="img">
-                            <!-- <i class="bx bxs-group"></i> -->
-                            </div>
-                        <div class="cuerpo">
-                            <span style=" font-weight: bold;">Grupo 2</span>
-    
-                            <div class="texto">
-                               Cosas Grupo 2
-                                 <span class="tiempo">
-                                    <i class="bx bx-time-five"></i>
-                                    Hace 5 min
-                                </span> 
-                            </div>
-    
-                        </div>
-                    </div>
-                    <div class="publiacion">
-                        <div class="avatar ">
-                        <img class="tamañoImagengrupoPanel2" src="../img_grupos/gatitoPuño.jpg" alt="img">
-                        <!-- <i class="bx bxs-group"></i> -->
-                        </div>
+
+                <?php
+                 // Realizar la consulta a la base de datos
+                  include('conexion.php');  // Incluye el archivo de conexión
+                 
+                  $sqlConsulta = "SELECT * FROM Usuarios WHERE Usuario = '$username'";
+
+                 $resultConsulta = $conn->query($sqlConsulta);
+
+                 if ($resultConsulta->num_rows > 0) {
+                  // Obtener el primer resultado (asumiendo que solo habrá uno)
+                  $row = $resultConsulta->fetch_assoc();
+
+                  // Asignar los valores a variables para usar en el HTML
+                  $ID = $row["ID"];
+        
+                // ... Continuar con los demás campos ...
+                  }  else {
+                 echo "No se encontraron resultados para el usuario '$usuario'.";
+                }
+
+                  $sql = "SELECT
+                  mg.ID AS MensajeID,
+                  mg.Contenido AS MensajeContenido,
+                  mg.FechaEnvio AS FechaEnvio,
+                  u.Usuario AS RemitenteUsuario,
+                  u.ID AS RemitenteID,
+                  g.ID AS GrupoID,
+                  g.Nombre AS NombreGrupo,
+                  CONCAT(
+                      TIMESTAMPDIFF(HOUR, mg.FechaEnvio, NOW()), ' horas ',
+                      MOD(TIMESTAMPDIFF(MINUTE, mg.FechaEnvio, NOW()), 60), ' minutos'
+                  ) AS DiferenciaTiempo
+              FROM Mensajes_grupo mg
+              JOIN Usuarios u ON mg.RemitenteID = u.ID
+              JOIN Grupo g ON mg.Grupo_ID = g.ID
+              WHERE g.ID = $id_grupo  ORDER BY FechaEnvio asc";
+                 $result = $conn->query($sql);
+                ?>
+
+                 <?php
+                  // Verificar si se obtuvieron resultados
+                 if ($result->num_rows > 0) {
+                 // Iterar sobre los resultados y generar las opciones del select
+                  while ($row = $result->fetch_assoc()) {
+                  //echo "<option value='" . $row["Id"] . "'>" . $row["Nombre"] . "</option>";
+                  if($row["RemitenteID"] == $ID){ //USUARIO LOGG DERECHA
+
+                    
+                                        
+                    echo '
+                    <div class="mensaje left">
                     <div class="cuerpo">
-                        <span style=" font-weight: bold;">Grupo 2</span>
-
+                         <img src="http://localhost/multimedia/png/user-foto-3.png" alt=""> 
                         <div class="texto">
-                           Cosas Grupo 2
-                             <span class="tiempo">
-                                <i class="bx bx-time-five"></i>
-                                Hace 5 min
-                            </span> 
+                        '. $row["MensajeContenido"] .'
+                            <span class="tiempo">
+                                <i class= bx bx-time-five ></i>
+                                '. $row["DiferenciaTiempo"] .'
+                                
+                            </span>
+                        </div>
+                        <ul class="opciones-msj">
+                            <li>
+                                <button type="button">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button">
+                                    <i class="fas fa-share-square"></i>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="avatar">
+                        <img src="../img/user.jpeg" alt="img">
+                    </div>
+                </div>';
+
+                  }else{ //USUARIO ESCRITO IZQUIERDA
+
+
+                    
+                    
+                    echo '
+                    <div class="mensaje">
+                    <div class="avatar">
+                        <img src="../imagenes_usuarios/gatitochamba.jpg" alt="img">
+                    </div>
+                    <div class="cuerpo">
+                        
+                        <div class="texto">
+
+                        ' . $row["RemitenteUsuario"] . ': ' . $row["MensajeContenido"] . '
+                            
+                            <span class="tiempo">
+                                <i class= bx bx-time-five ></i>
+                                '. $row["DiferenciaTiempo"] .'
+                            </span>
                         </div>
 
                     </div>
+                </div> ';
+                    
+                  }
+
+
+
+                  
+                  
+
+                  }
+                }else {
+                   //echo "<option value=''>No hay opciones disponibles</option>";
+                }
+                ?>
+
+                    
                 </div>
     
     
-                    </div>
+                    
 
             </div>
+            <div class="panel-escritura">
+                 <form class="textarea" action="enviarm_grupo.php" method="post">
+                 <input type="hidden" name="usuario" value="<?php echo $username; ?>">
+                 <input type="hidden" name="id_usuario" value="<?php echo $ID; ?>">
+                 <input type="hidden" name="grupo" value="<?php echo $grupo; ?>">
+                 <input type="hidden" name="id_grupo" value="<?php echo $id_grupo; ?>">
+                     <div class="opcines">
+                         <button type="button">
+                             <i class="bx bx-file-blank" style="color: black;"></i>
+                             <label for="file"></label>
+                             <input type="file" id="file">
+                         </button>
+                         <button type="button">
+                             <i class="bx bx-image" style="color: black;" ></i>
+                             <label for="img"></label>
+                             <input type="file" id="img">
+                         </button>
+                     </div>
+                     <textarea id="mensaje" name="mensaje" placeholder="Escribir mensaje"></textarea>
+                    
+                     <button type="submit" class="enviar"> <!-- Agregamos onclick -->
+                      <i class="bx bxs-send"></i>
+                     </button>
+                 </form>
+
+                 </div>
         </div>
+        
+        
 
         
     </div>
@@ -370,33 +371,50 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
                 </div>
                 <div class="panel-chat">
                 <ul class="chat-list">
-                <li class="chat-list-item" id="chat1" onclick="mostrarInfoUsuario('chat1')">
+
+                <?php
+                 // Realizar la consulta a la base de datos
+                  include('conexion.php');  // Incluye el archivo de conexión
+                  $username = $_GET['username'];
+
+                  $sql = "SELECT Usuarios.ID, Usuarios.Usuario, Usuarios.Apellidos
+                  FROM Usuarios
+                  LEFT JOIN MiembrosGrupo ON Usuarios.ID = MiembrosGrupo.UsuarioID AND MiembrosGrupo.GrupoID = $id_grupo
+                  WHERE MiembrosGrupo.ID IS NULL  and Usuario != '$username'";
+                 $result = $conn->query($sql);
+                  // Verificar si se obtuvieron resultados
+                  if ($result->num_rows > 0) {
+                    // Iterar sobre los resultados y generar las opciones del select
+                     while ($row = $result->fetch_assoc()) {
+                     
+                     echo '
+
+                     <li class="chat-list-item" id="chat'. $row["ID"] .'" onclick="mostrarInfoUsuario("chat1")">
                     
                     
                     
                     <div class="usuario-info-chat">
                     <img src="../imagenes_usuarios/gatitochamba.jpg" alt="Chat 1" class="chat-icon_V2">
                     </div>
-                    <span> gatito chamba</span> 
+                    <span> ' . $row["Usuario"] . '</span> 
                     
-                </li>
-                <li class="chat-list-item" id="chat2" onclick="mostrarInfoUsuario('chat2')">
-                    <div class="usuario-info-chat">
-                        <img src="../imagenes_usuarios/gatoGuitarra.jpg" alt="Chat 2" class="chat-icon_V2">
-                        <!-- <span class="estado-usuario enlinea"></span> -->
-                        
-                    </div>
-                    <span>Gato guitarra</span>
-                </li>
-                <li class="chat-list-item" id="chat3" onclick="mostrarInfoUsuario('chat3')">
-                    <div class="usuario-info-chat">
-                        <img src="../imagenes_usuarios/bob.jpg" alt="Chat 3" class="chat-icon_V2">
-                    
-                        
-                    </div>
-                    <span>Bob esponja</span>
-                    
-                </li>
+                    </li>';
+                     
+   
+                     }
+                   }else {
+                      //echo "<option value=''>No hay opciones disponibles</option>";
+                   }
+
+
+
+                ?>
+
+
+
+
+
+                
                 </ul>
 
     
@@ -412,6 +430,28 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
         
     </div>
 </div>
+<script>
+    // Obtén todos los elementos con la clase chat-list-item
+    const chatItems = document.querySelectorAll('.chat-list-item');
+
+    // Agrega un evento de clic a cada elemento
+    chatItems.forEach(item => {
+        item.addEventListener('click', function() {
+            // Obtén el ID del elemento
+            const id = item.id.replace('chat', '');
+
+            // Obtén el nombre de usuario
+            const username = this.querySelector('span').innerText;
+
+            // Redirige a otra página con los parámetros id y username
+            window.location.href = 'agregarmimembrogrupo.php?id=' + id + '&usuario=' + username + '&id_grupo=<?php echo $id_grupo; ?>&nombre_grupo=<?php echo $grupo; ?>&usuarioc=<?php echo $username; ?>';
+
+        });
+    });
+</script>
+
+
+
 <!-- ventana emergente  crear Grupo-->
 <div id="miVentanaEmergenteCrearGrupos" class="popup">
     <div class="popup-content">
@@ -455,34 +495,49 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
 
                 <div class="panel-chat">
                 <ul class="chat-list">
-                <li class="chat-list-item" id="chat1" onclick="mostrarInfoUsuario('chat1')">
+                <?php
+                 // Realizar la consulta a la base de datos
+                  include('conexion.php');  // Incluye el archivo de conexión
+                  $username = $_GET['username'];
+
+                  $sql = "SELECT
+                  U.ID AS IDUsuario,
+                  U.Usuario AS NombreUsuario,
+                  MG.GrupoID,
+                  G.Nombre AS NombreGrupo
+                  FROM Usuarios U
+                  INNER JOIN MiembrosGrupo MG ON U.ID = MG.UsuarioID
+                  INNER JOIN Grupo G ON MG.GrupoID = G.ID
+                  WHERE MG.GrupoID = $id_grupo";
+                   $result = $conn->query($sql);
+                  // Verificar si se obtuvieron resultados
+                  if ($result->num_rows > 0) {
+                    // Iterar sobre los resultados y generar las opciones del select
+                     while ($row = $result->fetch_assoc()) {
+                     
+                     echo '
+
+                     <li class="chat-list-item" id="chat'. $row["IDUsuario"] .'" onclick="mostrarInfoUsuario("chat1")">
                     
                     
                     
-                    <div class="usuario-info-chat" >
+                    <div class="usuario-info-chat">
                     <img src="../imagenes_usuarios/gatitochamba.jpg" alt="Chat 1" class="chat-icon_V2">
                     </div>
-                    <span> gatito chamba</span> 
+                    <span> ' . $row["NombreUsuario"] . '</span> 
                     
-                    
-                </li>
-                <li class="chat-list-item" id="chat2" onclick="mostrarInfoUsuario('chat2')">
-                    <div class="usuario-info-chat">
-                        <img src="../imagenes_usuarios/gatoGuitarra.jpg" alt="Chat 2" class="chat-icon_V2">
-                        <!-- <span class="estado-usuario enlinea"></span> -->
-                        
-                    </div>
-                    <span>Gato guitarra</span>
-                </li>
-                <li class="chat-list-item" id="chat3" onclick="mostrarInfoUsuario('chat3')">
-                    <div class="usuario-info-chat">
-                        <img src="/imagenes_usuarios/bob.jpg" alt="Chat 3" class="chat-icon_V2">
-                    
-                        
-                    </div>
-                    <span>Bob esponja</span>
-                    
-                </li>
+                    </li>';
+                     
+   
+                     }
+                   }else {
+                      //echo "<option value=''>No hay opciones disponibles</option>";
+                   }
+
+
+
+                ?>
+                
                 </ul>
 
     

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SubGrupos</title>
+    <title>Grupos</title>
 
     <!-- <link rel="stylesheet" type="text/css" href="MyStyle.css"> -->
     <link rel="stylesheet" type="text/css" href="../css/chatstyle.css">
@@ -115,13 +115,22 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
     </style>
 </head>
 <body>
+    <?php
+                 // Realizar la consulta a la base de datos
+                  
+                  $username = $_GET['username'];
+                  $id_grupo = $_GET['id_grupo'];
+                  $grupo = $_GET['grupo'];
+
+                  
+                ?>
     <header>
         <a href="#" class ="imagenUsuario">
             <img src="../img/user.jpeg" alt = "User" >
-            <h3 id="NombreUsurio">User</h3>
+            <h3 id="NombreUsurio"><?php echo $username; ?></h3>
         </a>
         <nav>
-            <a id="GuposBarraSuperior" class ="nav_link" href="#">Grupos</a>
+            <a id="GuposBarraSuperior" class ="nav_link" href="Grupos.php?username=<?php echo urlencode($_GET['username']); ?>">Grupos</a>
             <a id="ChatBarraSuperior" class ="nav_link selected " href="#">Chats</a>
             <a id="InsigniasBarraSuperior" class ="nav_link" href="#">Insignias</a>
             <a id="TareasBarraSuperior" class ="nav_link" href="#">Tareas</a>
@@ -135,91 +144,20 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
     
     <div class="chat-container">
         
-        <div class="chat-sidebar">
-                
-                <div class="usuario-seleccionado">
-                    
-                        <div class="avatar ">
-                            
-                            <img style="border-radius: 50%; width: 55px;" class="tamañoImagengrupoPanel" src="../img_grupos/gatitoPuño.jpg" alt="img">
-                            <!-- <i class='bx bxs-group'   ></i> -->
-                        </div>
-                        <div class="cuerpo">
-                            <span>Grupo 1</span>
-                            <!-- <span>Activo - Escribiendo...</span> -->
-                        </div>
-                        <div class="opciones">
-                            <ul> 
-                                <li>
-                                    <button type="button" onclick="mostrarVentanaEmergenteSubCrearGrupos()" style="width: 110px; border-radius: 10% ;"> <h6>Crear SubGrupo</h6><i class='bx bx-plus'></i>
-                                </button>
-                                </li> 
         
-                            </ul>
-                        </div>
-
-                </div>
-
-            <!-- <nav id="Menu">
-                <div id="ChatMenu">
-                    <a class ="nav_link" href="#">Chat</a>
-                </div>     -->
-                <!-- aqui parece el menu segun hemos selecionado en la barra superior 
-                
-            </nav>-->
-
-            <!-- <h3>  <img src="/imagenes_usuarios/patricio.jpg" alt="Chat 1" class="chat-icon">patricio 
-                <span class="regs"> <a href="#" id="registroLink">Cerrar sesión</a></span></h3>
-            <h2>Bandeja de Chats</h2> -->
-           
-            <ul class="chat-list">
-                <li class="chat-list-item" id="chat1">
-                    
-                    
-                    
-                    <div class="usuario-info-chat">
-                        <img src="../img_grupos/cruzcruz.jpg" alt="Chat 1" class="chat-icon">
-                    <!-- <span class="estado-usuario enlinea"></span> -->
-                    <!-- <i class='bx bxs-group' ></i> -->
-
-                    </div>
-                    <span> sub Grupo 1</span> 
-                    
-                </li>
-                <li class="chat-list-item" id="chat2">
-                    <div class="usuario-info-chat">
-                        <img src="../img_grupos/gatitoPuño.jpg" alt="Chat 2" class="chat-icon">
-                        <!-- <span class="estado-usuario enlinea"></span> -->
-                        <!-- <i class='bx bxs-group' ></i> -->
-                    </div>
-                    <span>sub Grupo 2</span>
-                </li>
-                <li class="chat-list-item" id="chat3">
-                    <div class="usuario-info-chat">
-                        <img src="../img_grupos/ranita.jpg" alt="Chat 3" class="chat-icon">
-                        <!-- <span class="estado-usuario desconectado"></span> -->
-                        <!-- <i class='bx bxs-group' ></i> -->
-                    </div>
-                    <span>sub Grupo 3</span>
-                    
-                </li>
-            </ul>
-
-
-
-
-            <div id="Grupos_list_container">
-                <!-- Aquí se mostrará la lista de grupos -->
-            </div>
-            
-        </div>
         <div class="chat-main">
             
-
+            <div id="chat-content">
+                <!-- Contenido del chat actual -->
+            </div>
             <div class="usuario-seleccionado">
-
+                <div class="avatar ">
+                    
+                    <img class="tamañoImagengrupoPanel" src="../img_grupos/gatitoPuño.jpg" alt="img" >
+                    <!-- <i class='bx bxs-group'   ></i> -->
+                </div>
                 <div class="cuerpo">
-                    <!-- <span>Grupo 1</span> -->
+                    <span><?php echo $grupo; ?></span>
                     <!-- <span>Activo - Escribiendo...</span> -->
                 </div>
                 <div class="opciones">
@@ -233,26 +171,31 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
                         <li>
                             <button type="button" title="Eliminar Miembro"><i class='bx bxs-user-minus'></i>
                         </li> -->
-
                         <li >
-                            <button onclick="mostrarVentanaEmergenteAgregarMimbros_SubGrupos()"  type="button"  title="Agregar Membros" ><i class='bx bxs-user-plus'></i>
+                            <button onclick="mostrarVentanaEmergente()"  type="button"  title="Agregar Membros" ><i class='bx bxs-user-plus'></i>
                                 
                         </li>
                         <li >
-                            <button onclick="mostrarVentanaEmergenteMiembros_SubGrupos()" type="button"  title="Miembros" ><i class='bx bx-user'></i>
+                            <button onclick="mostrarVentanaEmergenteMiembros()" type="button"  title="Miembros" ><i class='bx bx-user'></i>
+                        </li>  
+                        <!-- <li >
+                            <button type="button"  title="Crear SubGrupos"><i class='bx bx-list-plus'></i>
+                        </li>  -->
+                        <li >
+                            <!-- <button type="button"  title="SubGrupos"  ></button><i class='bx bx-list-ul'></i> -->
+                                
+                                    
+                                    <a id="TareasBarraSuperior" class ="nav_link" href="../php/SubGrupos.html">
+                                        <button style="width: 110px; border-radius:0% ;" type="button"  title="SubGrupos">SubGrupos
+                                        <i class='bx bx-list-ul'></i>
+                                        </button>
+                                            
+                                    
+                                    </a> 
+                                
                         </li> 
                         <li >
-                            <!-- <button type="button"  title="Tareas" style="width: 80px; border-radius:0% ;">Tareas <i class='bx bx-edit'></i> -->
-                                
-                                    <a id="TareasBarraSuperior" class ="nav_link" href="../php/Tareas.html">
-                                        <button style="width: 80px; border-radius:0% ;" type="button"  title="Tareas">Tareas <i class='bx bx-edit'></i>
-                                        </button>  
-                                        
-                                    </a> 
-                                 
-                        </li>
-                        <li >
-                            <button type="button" style="background-color: rgba(255, 0, 0, 0.534);"#007bff title="Eliminar SubGrupo" ><i class='bx bxs-trash'></i>
+                            <button type="button" style="background-color: rgba(255, 0, 0, 0.534);"#007bff title="Eliminar Grupo" ><i class='bx bxs-trash'></i>
                         </li> 
                     </ul>
                 </div>
@@ -306,10 +249,10 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
                             <!-- <i class="bx bxs-group"></i> -->
                             </div>
                         <div class="cuerpo">
-                            <span style=" font-weight: bold;">subGrupo 1</span>
+                            <span style=" font-weight: bold;">Grupo 2</span>
     
                             <div class="texto">
-                               Cosas subGrupo 1
+                               Cosas Grupo 2
                                  <span class="tiempo">
                                     <i class="bx bx-time-five"></i>
                                     Hace 5 min
@@ -320,14 +263,14 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
                     </div>
                     <div class="publiacion">
                         <div class="avatar ">
-                        <img class="tamañoImagengrupoPanel2" src="../img_grupos/cruzcruz.jpg" alt="img">
+                        <img class="tamañoImagengrupoPanel2" src="../img_grupos/gatitoPuño.jpg" alt="img">
                         <!-- <i class="bx bxs-group"></i> -->
                         </div>
                     <div class="cuerpo">
-                        <span style=" font-weight: bold;">subGrupo 2</span>
+                        <span style=" font-weight: bold;">Grupo 2</span>
 
                         <div class="texto">
-                           Cosas subGrupo 2
+                           Cosas Grupo 2
                              <span class="tiempo">
                                 <i class="bx bx-time-five"></i>
                                 Hace 5 min
@@ -341,48 +284,43 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
                     </div>
 
             </div>
+            <div class="panel-escritura">
+                 <form class="textarea" action="enviarm.php" method="post">
+                 <input type="hidden" name="usuario" value="">
+                 <input type="hidden" name="usuario2" value="">
+                 <input type="hidden" name="ID2" value="">
+                     <div class="opcines">
+                         <button type="button">
+                             <i class="bx bx-file-blank" style="color: black;"></i>
+                             <label for="file"></label>
+                             <input type="file" id="file">
+                         </button>
+                         <button type="button">
+                             <i class="bx bx-image" style="color: black;" ></i>
+                             <label for="img"></label>
+                             <input type="file" id="img">
+                         </button>
+                     </div>
+                     <textarea id="mensaje" name="mensaje" placeholder="Escribir mensaje"></textarea>
+                    
+                     <button type="submit" class="enviar"> <!-- Agregamos onclick -->
+                      <i class="bx bxs-send"></i>
+                     </button>
+                 </form>
+
+                 </div>
         </div>
+        
+        
 
         
     </div>
 
 
-<!-- ventana emergente  crear SubGrupo-->
-<div id="miVentanaEmergenteSubCrearGrupos" class="popup">
-    <div class="popup-content">
-        <button type="button" class="close-button" onclick="cerrarVentanaEmergenteSubCrearGrupos()">&times;</button>
-
-        <form>
-            <div class="chat-main">
-                <div class="form-group">
-                    <label for="nombreGrupo">Nombre del SubGrupo:</label>
-                    <input type="text" id="nombreGrupo" name="nombreGrupo" placeholder="Ingrese el nombre del grupo" required>
-                </div>
-                <div class="form-group">
-                    <label for="descripcionGrupo">Descripción del SubGrupo:</label>
-                    <textarea id="descripcionGrupo" name="descripcionGrupo" rows="4" placeholder="Ingrese la descripción del grupo" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="fotoGrupo">Foto del SubGrupo:</label>
-                    <input type="file" id="fotoGrupo" name="fotoGrupo" accept="image/*" onchange="mostrarImagen()">
-
-                    
-                </div>
-                <div class="form-group">
-                    <img id="imagenMostrada" src="" alt="Imagen del grupo" style="max-width: 100%; display: none;">
-                </div>
-            </div>
-
-            <button type="button" class="submit-button" onclick="enviarDatos()">Enviar</button>
-        </form>
-
-    </div>
-</div>
-
 <!-- ventana emergente  agregar miembros-->
-<div id="miVentanaEmergenteAgregarMimbros_SubGrupos" class="popup">
+<div id="miVentanaEmergente" class="popup">
     <div class="popup-content" >
-        <button type="button" class="close-button" onclick="cerrarVentanaEmergenteAgregarMimbros_SubGrupos()">&times;</button>
+        <button type="button" class="close-button" onclick="cerrarVentanaEmergente()">&times;</button>
         
         <form>
             <div class="chat-main">
@@ -440,10 +378,41 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
         
     </div>
 </div>
-    <!-- ventana emergente  miembros-->
-<div id="miVentanaEmergenteMiembros_SubGrupos" class="popup">
+<!-- ventana emergente  crear Grupo-->
+<div id="miVentanaEmergenteCrearGrupos" class="popup">
+    <div class="popup-content">
+        <button type="button" class="close-button" onclick="cerrarVentanaEmergenteCrearGrupos()">&times;</button>
+
+        <form>
+            <div class="chat-main">
+                <div class="form-group">
+                    <label for="nombreGrupo">Nombre del Grupo:</label>
+                    <input type="text" id="nombreGrupo" name="nombreGrupo" placeholder="Ingrese el nombre del grupo" required>
+                </div>
+                <div class="form-group">
+                    <label for="descripcionGrupo">Descripción del Grupo:</label>
+                    <textarea id="descripcionGrupo" name="descripcionGrupo" rows="4" placeholder="Ingrese la descripción del grupo" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="fotoGrupo">Foto del Grupo:</label>
+                    <input type="file" id="fotoGrupo" name="fotoGrupo" accept="image/*" onchange="mostrarImagen()">
+
+                    
+                </div>
+                <div class="form-group">
+                    <img id="imagenMostrada" src="" alt="Imagen del grupo" style="max-width: 100%; display: none;">
+                </div>
+            </div>
+
+            <button type="button" class="submit-button" onclick="enviarDatos()">Enviar</button>
+        </form>
+
+    </div>
+</div>
+<!-- ventana emergente  miembros-->
+<div id="miVentanaEmergenteMiembros" class="popup">
     <div class="popup-content" >
-        <button type="button" class="close-button" onclick="cerrarVentanaEmergenteMiembros_SubGrupos()">&times;</button>
+        <button type="button" class="close-button" onclick="cerrarVentanaEmergenteMiembros()">&times;</button>
         
         <form>
             <div class="chat-main">
@@ -473,7 +442,7 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
                 </li>
                 <li class="chat-list-item" id="chat3" onclick="mostrarInfoUsuario('chat3')">
                     <div class="usuario-info-chat">
-                        <img src="../imagenes_usuarios/bob.jpg" alt="Chat 3" class="chat-icon_V2">
+                        <img src="/imagenes_usuarios/bob.jpg" alt="Chat 3" class="chat-icon_V2">
                     
                         
                     </div>
@@ -492,6 +461,8 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
         
     </div>
 </div>
+
+    
     <script>
         // document.addEventListener("DOMContentLoaded", function () {
         //     // Obtener referencias a los elementos de la bandeja de chats

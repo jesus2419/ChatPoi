@@ -29,18 +29,7 @@
         });
     </script>
     <style>
-        /* Estilos básicos para el chat y la bandeja de chats */
-        /* body {font-family: Arial, Helvetica, sans-serif;} */
-       
-        /*
-        body {
-            font-family: Arial, sans-serif;
-        }
-        */
-        /* html{
-  background: var(--gris-bisonte);
-background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 100%);
-} */
+        
 
 
         .chat-sidebar {
@@ -114,15 +103,15 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
 <body>
     <header>
         <a href="#" class ="imagenUsuario">
-            <img src="../img/user.jpeg" alt = "User" >
-            <h3 id="NombreUsurio">User</h3>
+            <img src="../img/user.jpeg" alt = "User"  >
+            <h3 id="NombreUsurio"><?php echo $_GET['username']; ?></h3>
         </a>
         <nav>
-            <a id="GuposBarraSuperior" class ="nav_link" href="../php/Grupos.html">Grupos</a>
+            <a id="GuposBarraSuperior" class ="nav_link" href="Grupos.php?username=<?php echo urlencode($_GET['username']); ?>">Grupos</a>
             <a id="ChatBarraSuperior" class ="nav_link selected " href="../php/chat.html">Chats</a>
             <a id="InsigniasBarraSuperior" class ="nav_link" href="#">Insignias</a>
             <a id="TareasBarraSuperior" class ="nav_link" href="#">Tareas</a>
-            <a class ="nav_link" href="#">
+            <a class ="nav_link" href="inicio.html">
                 <i class='bx bxs-log-out bx-flip-horizontal' ></i>
             </a>
         </nav>
@@ -132,63 +121,7 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
     
     <div class="chat-container">
         
-        <div class="chat-sidebar">
-
-            <div class="input-buscar">
-                <input type="search" placeholder="Buscar usuario">
-                <button class="button-search"><i class="bx bx-search-alt-2"></i></button>
-            </div>
-            <!-- <nav id="Menu">
-                <div id="ChatMenu">
-                    <a class ="nav_link" href="#">Chat</a>
-                </div>     -->
-                <!-- aqui parece el menu segun hemos selecionado en la barra superior 
-                
-            </nav>-->
-
-            <!-- <h3>  <img src="/imagenes_usuarios/patricio.jpg" alt="Chat 1" class="chat-icon">patricio 
-                <span class="regs"> <a href="#" id="registroLink">Cerrar sesión</a></span></h3>
-            <h2>Bandeja de Chats</h2> -->
-           
-            <ul class="chat-list">
-                <li class="chat-list-item" id="chat1">
-                    
-                    
-                    
-                    <div class="usuario-info-chat">
-                        <img src="../imagenes_usuarios/gatitochamba.jpg" alt="Chat 1" class="chat-icon">
-                    <span class="estado-usuario enlinea"></span>
-                    
-
-                    </div>
-                    <span> gatito chamba</span> 
-                    
-                </li>
-                <li class="chat-list-item" id="chat2">
-                    <div class="usuario-info-chat">
-                        <img src="../imagenes_usuarios/gatoGuitarra.jpg" alt="Chat 2" class="chat-icon">
-                        <span class="estado-usuario enlinea"></span>
-                    </div>
-                    <span>Gato guitarra</span>
-                </li>
-                <li class="chat-list-item" id="chat3">
-                    <div class="usuario-info-chat">
-                        <img src="../imagenes_usuarios/bob.jpg" alt="Chat 3" class="chat-icon">
-                        <span class="estado-usuario desconectado"></span>
-                    </div>
-                    <span>Bob esponja</span>
-                    
-                </li>
-            </ul>
-
-
-
-
-            <div id="Grupos_list_container">
-                <!-- Aquí se mostrará la lista de grupos -->
-            </div>
-            
-        </div>
+        
         <div class="chat-main">
             
             <div id="chat-content">
@@ -289,59 +222,7 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
 
 
 
-    
-    <script>
-        // document.addEventListener("DOMContentLoaded", function () {
-        //     // Obtener referencias a los elementos de la bandeja de chats
-        //     var chat1 = document.getElementById("chat1");
-        //     var chat2 = document.getElementById("chat2");
-        //     var chat3 = document.getElementById("chat3");
-    
-        //     // Obtener referencia al elemento de contenido del chat actual
-        //     var chatContent = document.getElementById("chat-content");
-    
-        //     // Función para cambiar el contenido del chat actual
-        //     function cambiarChat(contenido) {
-        //         // Agregar el contenido al chat actual
-        //         chatContent.innerHTML = contenido;
-        //     }
-    
-        //     // Agregar eventos de clic a los elementos de la bandeja de chats
-        //     chat1.addEventListener("click", function () {
-        //         var contenidoChat1 = `
-        //             <h2>Chat Actual</h2>
-        //             <div class="chat-message"><img src="/imagenes_usuarios/gatitochamba.jpg" alt="Chat 1" class="chat-icon">Gato chamba: ¡Hola!</div>
-        //             <div class="chat-message">Tú: ¿Cómo estás?</div>
-        //             <div class="chat-message"><img src="/imagenes_usuarios/gatitochamba.jpg" alt="Chat 1" class="chat-icon">Gato chamba: Bien, gracias. ¿Y tú?</div>
-        //             <div class="chat-message">Tú: Muy bien, gracias por preguntar.</div>
-        //             <input type="text" class="chat-input" placeholder="Escribe tu mensaje aquí">
-        //             <button class="send-button">Enviar</button>
-        //         `;
-        //         cambiarChat(contenidoChat1);
-        //     });
-    
-        //     chat2.addEventListener("click", function () {
-        //         var contenidoChat2 = `
-        //             <h2>Chat Actual</h2>
-        //             <div class="chat-message"> </img src="imagenes_usuarios/gatoGuitarra.jpg" alt="Chat 2" class="chat-icon">Gato guitarra: Hola, soy el gato guitarra.</div>
-        //             <div class="chat-message">Tú: ¿Cómo puedo ayudarte?</div>
-        //             <input type="text" class="chat-input" placeholder="Escribe tu mensaje aquí">
-        //             <button class="send-button">Enviar</button>
-        //         `;
-        //         cambiarChat(contenidoChat2);
-        //     });
-    
-        //     chat3.addEventListener("click", function () {
-        //         var contenidoChat3 = `
-        //             <h2>Chat Actual</h2>
-        //             <div class="chat-message"> <img src="/imagenes_usuarios/bob.jpg" alt="Chat 3" class="chat-icon">Bob esponja: ¡Hola soy bob esponja!</div>
-        //             <input type="text" class="chat-input" placeholder="Escribe tu mensaje aquí">
-        //             <button class="send-button">Enviar</button>
-        //         `;
-        //         cambiarChat(contenidoChat3);
-        //     });
-        // });
-    </script>
+   
     
     
 </body>

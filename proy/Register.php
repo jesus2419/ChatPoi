@@ -17,7 +17,7 @@
     // Agrega un evento de clic al enlace
     registroLink.addEventListener("click", function (event) {
       event.preventDefault(); // Evita el comportamiento predeterminado del enlace
-      window.location.href = "inicio.html"; // Redirige a otro.html
+      window.location.href = "inicio.php"; // Redirige a otro.html
     });
   });
   </script>
@@ -26,21 +26,21 @@
 
 
 
-<form action="procesar_registro.php" method="post">
+<form action="insertar_usuario.php" method="post">
  
   
   <div class="container-Registro">
     <div class="imgcontainerRegistro">
-      <img src="../img/bisonte.png" alt="Avatar" class="avatarRegitrso">
+      <img src="../img/bisonte.png" alt="Avatar" class="avatarRegitrso"> 
       <center><h2 class = "RegistroTitulo">Registro</h2></center>
     </div>
    
-    <form action="procesar_registro.php" method="post">
+    <form action="insertar_usuario.php" method="post" enctype="multipart/form-data">
 
       <!-- nombre usuario -->
       <div class="input-box-Registro">
         <label class="custom-label" for="uname"><b>Nombre de Usuario:</b></label>
-        <input type="text" placeholder="Ingrese su nombre de usuario" name="uname" id="uname" required>
+        <input type="text" placeholder="Ingrese su nombre de usuario" name="usuario" id="usuario" required>
         <i class='bx bxs-user'></i>
       </div>
       <!-- nombre usuario -->
@@ -62,13 +62,7 @@
           <div class="input-box-Registro">
             <label for="telefono"><b>Numero de telefono: </b></label>
 
-        <!-- Agrega el combo box de ladas de teléfono -->
-        <select class ="ComboOpciones" name="lada" id="lada">
-          <option value="001">+001</option>
-          <option value="002">+002</option>
-          <option value="003">+003</option>
-          <!-- Agrega más opciones según sea necesario -->
-        </select>
+        
         <input type="text" placeholder="Ingrese su numero de telefono" name="telefono" id="telefono" required>
         <i class='bx bxs-phone'></i>
           </div>
@@ -76,19 +70,27 @@
                 <!--Clave  -->
                 <div class="input-box-Registro">
                   <label for="psw"><b>Clave de paso: </b></label>
-                  <input type="password" placeholder="Ingresar Clave de paso" name="password" id="password" required>
+                  <input type="password" placeholder="Ingresar Clave de paso" name="contrasena" id="contrasena" required>
                   <i class='bx bxs-lock-alt' ></i>
                 </div>
                 <!--Clave  -->
-      
-        
+                
+
+         </div>
+
+         <label for="tipo_usuario">Tipo de Usuario:</label><br>
+        <select id="tipo_usuario" name="tipo_usuario" required>
+            <option value="Alumno">Alumno</option>
+            <option value="Maestro">Maestro</option>
+        </select><br><br>
+        <input class = "btnRegistrar" type="submit" value="Registrar">
 
     </form>
   
 
 
-    <button  class = "btnRegistrar" type="submit">Registrar</button>
-    
+    <!--<button  class = "btnRegistrar" type="submit">Registrar</button>
+-->
     
     <span class="regs"><a href="#" id="registroLink">Regresar a Inicio</a></span>
    

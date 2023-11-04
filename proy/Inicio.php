@@ -18,7 +18,7 @@
     // Agrega un evento de clic al enlace
     registroLink.addEventListener("click", function (event) {
       event.preventDefault(); // Evita el comportamiento predeterminado del enlace
-      window.location.href = "Register.html"; // Redirige a otro.html
+      window.location.href = "Register.php"; // Redirige a otro.html
     });
   });
   </script>
@@ -28,12 +28,12 @@
 
 
 
-<form action="procesar_login.php" method="post">
+<form action="login.php" method="post">
 
 
   <div class="container"> 
 
-    <form action="procesar_login.php" method="post">
+    <form action="login.php" method="post">
       <div class="imgcontainer">
         <img src="../img/bisonte.png" alt="Avatar" class="avatar">
       </div>
