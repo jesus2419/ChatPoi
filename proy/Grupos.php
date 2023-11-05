@@ -43,6 +43,59 @@
   background: var(--gris-bisonte);
 background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 100%);
 } */
+<?php
+// Obtén el valor de usuario pasado en la URL
+if (isset($_GET['username'])) {
+    $usuario = $_GET['username'];
+    //echo "Usuario: " . $usuario;
+} else {
+    echo "No se recibió un nombre de usuario.";
+}
+?>
+
+    <?php
+    // Realizar la conexión a la base de datos
+    include('conexion.php');
+
+    // Consulta para obtener información del usuario 'geralt'
+    $sqlConsulta = "SELECT ID,
+    Usuario,
+    Contraseña,
+    Nombre,
+    Apellidos,
+    Telefono,
+    TipoUsuario,
+    ImagenBlop from  Usuarios
+                    WHERE
+                        usuario = '$usuario'";
+
+    $resultConsulta = $conn->query($sqlConsulta);
+
+    if ($resultConsulta->num_rows > 0) {
+        // Obtener el primer resultado (asumiendo que solo habrá uno)
+        $row = $resultConsulta->fetch_assoc();
+
+        // Asignar los valores a variables para usar en el HTML
+        $usuaNombre = $row["Usuario"];
+        $idd = $row["ID"];
+        $usuaContra = $row["Contraseña"];
+       
+        $nombre = $row["Nombre"];
+        $apellidop = $row["Apellidos"];
+       
+        $tipo = $row["TipoUsuario"];
+        
+        
+        
+        // ... Continuar con los demás campos ...
+    } else {
+        echo "No se encontraron resultados para el usuario '$usuario'.";
+    }
+
+    // Cerrar la conexión
+    $conn->close();
+                 
+                ?>
 
 
         .chat-sidebar {
@@ -125,7 +178,25 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
 
     <header>
         <a href="#" class ="imagenUsuario">
-            <img src="../img/user.jpeg" alt = "<?php echo $_GET['username']; ?>" >
+        <?php
+    // Obtén el nombre de usuario de alguna manera
+     $nombreUsuario = $idd; // Esto es un ejemplo, debes obtener el nombre de usuario de acuerdo a tu lógica
+     //echo $idd;
+    if ($nombreUsuario) {
+    // Escapa el nombre de usuario para asegurarte de que sea seguro para la URL
+        $nombreUsuarioURL = urlencode($nombreUsuario);
+    
+       // Genera la URL de la imagen con el nombre de usuario como parámetro
+      $urlImagen = "mostrar2.php?id=$nombreUsuarioURL";
+
+       // Muestra la imagen
+        echo "<img src='$urlImagen' alt='Imagen desde la base de datos'  >";
+    } else {
+         echo "No se ha especificado un nombre de usuario.";
+    }
+    ?>
+
+            <!-- <img src="../img/user.jpeg" alt = "" > -->
             <h3 id="NombreUsurio"><?php echo $_GET['username']; ?></h3>
         </a>
         <nav>
@@ -205,9 +276,27 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
                     
                     
                     
-                  <div class="usuario-info-chat">
-                      <img src="../img_grupos/cruzcruz.jpg" alt="Chat 1" class="chat-icon">
-                  <!-- <span class="estado-usuario enlinea"></span> -->
+                  <div class="usuario-info-chat">';
+                 
+                  // Obtén el nombre de usuario de alguna manera
+                   $nombreUsuario = $row["IDGrupo"]; // Esto es un ejemplo, debes obtener el nombre de usuario de acuerdo a tu lógica
+                  // echo $nombreUsuario;
+                  if ($nombreUsuario) {
+                  // Escapa el nombre de usuario para asegurarte de que sea seguro para la URL
+                      $nombreUsuarioURL = urlencode($nombreUsuario);
+                  
+                     // Genera la URL de la imagen con el nombre de usuario como parámetro
+                    $urlImagen = "mostrar3.php?id=$nombreUsuarioURL";
+              
+                     // Muestra la imagen
+                      echo "<img src='$urlImagen' alt='Imagen desde la base de datos'  class='chat-icon'>";
+                  } else {
+                       echo "No se ha especificado un nombre de usuario.";
+                  }
+                  
+
+                      //<img src="../img_grupos/cruzcruz.jpg" alt="Chat 1" class="chat-icon">
+                      echo '<!-- <span class="estado-usuario enlinea"></span> -->
                   <!-- <i class="bx bxs-group" ></i> -->
 
                   </div>
@@ -347,7 +436,7 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
     <div class="popup-content">
         <button type="button" class="close-button" onclick="cerrarVentanaEmergenteCrearGrupos()">&times;</button>
 
-        <form action="crear_grupo.php" method="post">
+        <form action="crear_grupo.php" method="post" enctype="multipart/form-data">
               <input type="hidden" name="usuario" value="<?php echo $_GET['username']; ?>">
             <div class="chat-main">
                 <div class="form-group">

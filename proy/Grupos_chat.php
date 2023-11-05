@@ -43,7 +43,59 @@
   background: var(--gris-bisonte);
 background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 100%);
 } */
+<?php
+// Obtén el valor de usuario pasado en la URL
+if (isset($_GET['username'])) {
+    $usuario = $_GET['username'];
+    //echo "Usuario: " . $usuario;
+} else {
+    echo "No se recibió un nombre de usuario.";
+}
+?>
 
+    <?php
+    // Realizar la conexión a la base de datos
+    include('conexion.php');
+
+    // Consulta para obtener información del usuario 'geralt'
+    $sqlConsulta = "SELECT ID,
+    Usuario,
+    Contraseña,
+    Nombre,
+    Apellidos,
+    Telefono,
+    TipoUsuario,
+    ImagenBlop from  Usuarios
+                    WHERE
+                        usuario = '$usuario'";
+
+    $resultConsulta = $conn->query($sqlConsulta);
+
+    if ($resultConsulta->num_rows > 0) {
+        // Obtener el primer resultado (asumiendo que solo habrá uno)
+        $row = $resultConsulta->fetch_assoc();
+
+        // Asignar los valores a variables para usar en el HTML
+        $usuaNombre = $row["Usuario"];
+        $idd = $row["ID"];
+        $usuaContra = $row["Contraseña"];
+       
+        $nombre = $row["Nombre"];
+        $apellidop = $row["Apellidos"];
+       
+        $tipo = $row["TipoUsuario"];
+        
+        
+        
+        // ... Continuar con los demás campos ...
+    } else {
+        echo "No se encontraron resultados para el usuario '$usuario'.";
+    }
+
+    // Cerrar la conexión
+    $conn->close();
+                 
+                ?>
 
         .chat-sidebar {
             width: 30%;
@@ -126,7 +178,23 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
                 ?>
     <header>
         <a href="#" class ="imagenUsuario">
-            <img src="../img/user.jpeg" alt = "User" >
+        <?php
+    // Obtén el nombre de usuario de alguna manera
+     $nombreUsuario = $idd; // Esto es un ejemplo, debes obtener el nombre de usuario de acuerdo a tu lógica
+     //echo $idd;
+    if ($nombreUsuario) {
+    // Escapa el nombre de usuario para asegurarte de que sea seguro para la URL
+        $nombreUsuarioURL = urlencode($nombreUsuario);
+    
+       // Genera la URL de la imagen con el nombre de usuario como parámetro
+      $urlImagen = "mostrar2.php?id=$nombreUsuarioURL";
+
+       // Muestra la imagen
+        echo "<img src='$urlImagen' alt=''  >";
+    } else {
+         echo "No se ha especificado un nombre de usuario.";
+    }
+    ?>
             <h3 id="NombreUsurio"><?php echo $username; ?></h3>
         </a>
         <nav>
@@ -151,9 +219,25 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
                 <!-- Contenido del chat actual -->
             </div>
             <div class="usuario-seleccionado">
-                <div class="avatar ">
-                    
-                    <img class="tamañoImagengrupoPanel" src="../img_grupos/gatitoPuño.jpg" alt="img" >
+                <div class="avatar "><?php
+    // Obtén el nombre de usuario de alguna manera
+     $nombreUsuario = $id_grupo; // Esto es un ejemplo, debes obtener el nombre de usuario de acuerdo a tu lógica
+     //echo $idd;
+    if ($nombreUsuario) {
+    // Escapa el nombre de usuario para asegurarte de que sea seguro para la URL
+        $nombreUsuarioURL = urlencode($nombreUsuario);
+    
+       // Genera la URL de la imagen con el nombre de usuario como parámetro
+      $urlImagen = "mostrar3.php?id=$nombreUsuarioURL";
+
+       // Muestra la imagen
+        echo "<img class='tamañoImagengrupoPanel' src='$urlImagen' alt=''  >";
+    } else {
+         echo "No se ha especificado un nombre de usuario.";
+    }
+    ?>
+
+                    <!--<img class="tamañoImagengrupoPanel" src="../img_grupos/gatitoPuño.jpg" alt="img" > -->
                     <!-- <i class='bx bxs-group'   ></i> -->
                 </div>
                 <div class="cuerpo">
@@ -268,9 +352,24 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
                             </li>
                         </ul>
                     </div>
-                    <div class="avatar">
-                        <img src="../img/user.jpeg" alt="img">
-                    </div>
+                    <div class="avatar">';
+                     // Obtén el nombre de usuario de alguna manera
+     $nombreUsuario = $idd; // Esto es un ejemplo, debes obtener el nombre de usuario de acuerdo a tu lógica
+     //echo $idd;
+    if ($nombreUsuario) {
+    // Escapa el nombre de usuario para asegurarte de que sea seguro para la URL
+        $nombreUsuarioURL = urlencode($nombreUsuario);
+    
+       // Genera la URL de la imagen con el nombre de usuario como parámetro
+      $urlImagen = "mostrar2.php?id=$nombreUsuarioURL";
+
+       // Muestra la imagen
+        echo "<img src='$urlImagen' alt=''  >";
+    } else {
+         echo "No se ha especificado un nombre de usuario.";
+    }
+                       // <img src="../img/user.jpeg" alt="img">
+                        echo '</div>
                 </div>';
 
                   }else{ //USUARIO ESCRITO IZQUIERDA
@@ -280,9 +379,24 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
                     
                     echo '
                     <div class="mensaje">
-                    <div class="avatar">
-                        <img src="../imagenes_usuarios/gatitochamba.jpg" alt="img">
-                    </div>
+                    <div class="avatar">';
+                      // Obtén el nombre de usuario de alguna manera
+     $nombreUsuario = $row["RemitenteID"]; // Esto es un ejemplo, debes obtener el nombre de usuario de acuerdo a tu lógica
+     //echo $idd;
+    if ($nombreUsuario) {
+    // Escapa el nombre de usuario para asegurarte de que sea seguro para la URL
+        $nombreUsuarioURL = urlencode($nombreUsuario);
+    
+       // Genera la URL de la imagen con el nombre de usuario como parámetro
+      $urlImagen = "mostrar2.php?id=$nombreUsuarioURL";
+
+       // Muestra la imagen
+        echo "<img src='$urlImagen' alt=''  >";
+    } else {
+         echo "No se ha especificado un nombre de usuario.";
+    }
+                      //  <img src="../imagenes_usuarios/gatitochamba.jpg" alt="img">
+                        echo '</div>
                     <div class="cuerpo">
                         
                         <div class="texto">
@@ -393,9 +507,25 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
                     
                     
                     
-                    <div class="usuario-info-chat">
-                    <img src="../imagenes_usuarios/gatitochamba.jpg" alt="Chat 1" class="chat-icon_V2">
-                    </div>
+                    <div class="usuario-info-chat">';
+
+                         // Obtén el nombre de usuario de alguna manera
+     $nombreUsuario = $row["ID"]; // Esto es un ejemplo, debes obtener el nombre de usuario de acuerdo a tu lógica
+     //echo $idd;
+    if ($nombreUsuario) {
+    // Escapa el nombre de usuario para asegurarte de que sea seguro para la URL
+        $nombreUsuarioURL = urlencode($nombreUsuario);
+    
+       // Genera la URL de la imagen con el nombre de usuario como parámetro
+      $urlImagen = "mostrar2.php?id=$nombreUsuarioURL";
+
+       // Muestra la imagen
+        echo "<img src='$urlImagen' alt=''  class='chat-icon_V2' >";
+    } else {
+         echo "No se ha especificado un nombre de usuario.";
+    }
+                   // <img src="../imagenes_usuarios/gatitochamba.jpg" alt="Chat 1" class="chat-icon_V2">
+                    echo '</div>
                     <span> ' . $row["Usuario"] . '</span> 
                     
                     </li>';
@@ -521,9 +651,25 @@ background: radial-gradient(circle, var(--azul-bisonte) 0%, var(--rojo-bisonte) 
                     
                     
                     
-                    <div class="usuario-info-chat">
-                    <img src="../imagenes_usuarios/gatitochamba.jpg" alt="Chat 1" class="chat-icon_V2">
-                    </div>
+                    <div class="usuario-info-chat">';
+                // Obtén el nombre de usuario de alguna manera
+                $nombreUsuario = $row["IDUsuario"]; // Esto es un ejemplo, debes obtener el nombre de usuario de acuerdo a tu lógica
+                //echo $idd;
+               if ($nombreUsuario) {
+               // Escapa el nombre de usuario para asegurarte de que sea seguro para la URL
+                   $nombreUsuarioURL = urlencode($nombreUsuario);
+               
+                  // Genera la URL de la imagen con el nombre de usuario como parámetro
+                 $urlImagen = "mostrar2.php?id=$nombreUsuarioURL";
+           
+                  // Muestra la imagen
+                   echo "<img src='$urlImagen' alt=''  class='chat-icon_V2' >";
+               } else {
+                    echo "No se ha especificado un nombre de usuario.";
+               }
+
+                    //<img src="../imagenes_usuarios/gatitochamba.jpg" alt="Chat 1" class="chat-icon_V2">
+                    echo '</div>
                     <span> ' . $row["NombreUsuario"] . '</span> 
                     
                     </li>';

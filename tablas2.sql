@@ -28,6 +28,7 @@ CREATE TABLE Grupo (
 	Descripcion Varchar(100) ,
     Fecha_creacion DATETIME ,
     Creador_ID INT NOT NULL,
+    ImagenBlop BLOB,
 
     FOREIGN KEY (Creador_ID) REFERENCES Usuarios(ID)
 );
@@ -102,7 +103,14 @@ DELIMITER ;
 
 DELIMITER ;
 SELECT * FROM Usuarios WHERE Usuario = 'jesus';
-select * from  Usuarios;
+select ID,
+    Usuario,
+    Contraseña,
+    Nombre,
+    Apellidos,
+    Telefono,
+    TipoUsuario,
+    ImagenBlop from  Usuarios;
 SELECT ID, Usuario, Nombre, Apellidos FROM Usuarios;
 select * from Mensajes;
 SELECT Contenido, FechaEnvio, RemitenteID

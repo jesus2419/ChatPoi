@@ -30,6 +30,61 @@
           });
         });
     </script>
+
+<?php
+// Obtén el valor de usuario pasado en la URL
+if (isset($_GET['username'])) {
+    $usuario = $_GET['username'];
+    //echo "Usuario: " . $usuario;
+} else {
+    echo "No se recibió un nombre de usuario.";
+}
+?>
+
+    <?php
+    // Realizar la conexión a la base de datos
+    include('conexion.php');
+
+    // Consulta para obtener información del usuario 'geralt'
+    $sqlConsulta = "SELECT ID,
+    Usuario,
+    Contraseña,
+    Nombre,
+    Apellidos,
+    Telefono,
+    TipoUsuario,
+    ImagenBlop from  Usuarios
+                    WHERE
+                        usuario = '$usuario'";
+
+    $resultConsulta = $conn->query($sqlConsulta);
+
+    if ($resultConsulta->num_rows > 0) {
+        // Obtener el primer resultado (asumiendo que solo habrá uno)
+        $row = $resultConsulta->fetch_assoc();
+
+        // Asignar los valores a variables para usar en el HTML
+        $usuaNombre = $row["Usuario"];
+        $idd = $row["ID"];
+        $usuaContra = $row["Contraseña"];
+       
+        $nombre = $row["Nombre"];
+        $apellidop = $row["Apellidos"];
+       
+        $tipo = $row["TipoUsuario"];
+        
+        
+        
+        // ... Continuar con los demás campos ...
+    } else {
+        echo "No se encontraron resultados para el usuario '$usuario'.";
+    }
+
+    // Cerrar la conexión
+    $conn->close();
+                 
+                ?>
+
     <style>
         
 
@@ -175,7 +230,26 @@ if (isset($_GET['username'])) {
 <body>
     <header>
         <a href="#" class ="imagenUsuario">
-            <img src="../img/user.jpeg" alt = "User"  >
+
+        <?php
+    // Obtén el nombre de usuario de alguna manera
+     $nombreUsuario = $idd; // Esto es un ejemplo, debes obtener el nombre de usuario de acuerdo a tu lógica
+     //echo $idd;
+    if ($nombreUsuario) {
+    // Escapa el nombre de usuario para asegurarte de que sea seguro para la URL
+        $nombreUsuarioURL = urlencode($nombreUsuario);
+    
+       // Genera la URL de la imagen con el nombre de usuario como parámetro
+      $urlImagen = "mostrar2.php?id=$nombreUsuarioURL";
+
+       // Muestra la imagen
+        echo "<img src='$urlImagen' alt='Imagen desde la base de datos'  >";
+    } else {
+         echo "No se ha especificado un nombre de usuario.";
+    }
+    ?>
+          <!--  <img src="../img/user.jpeg" alt = "User"  >  -->
+            
             <h3 id="NombreUsurio"><?php echo $_GET['username']; ?></h3>
         </a>
         <nav>
@@ -202,8 +276,69 @@ if (isset($_GET['username'])) {
             </div>
             <div class="usuario-seleccionado">
                 <div class="avatar ">
+                <?php
+    // Realizar la conexión a la base de datos
+    include('conexion.php');
+
+    // Consulta para obtener información del usuario 'geralt'
+    $sqlConsulta = "SELECT ID,
+    Usuario,
+    Contraseña,
+    Nombre,
+    Apellidos,
+    Telefono,
+    TipoUsuario,
+    ImagenBlop from  Usuarios
+                    WHERE
+                        usuario = '$usuario2'";
+
+    $resultConsulta = $conn->query($sqlConsulta);
+
+    if ($resultConsulta->num_rows > 0) {
+        // Obtener el primer resultado (asumiendo que solo habrá uno)
+        $row = $resultConsulta->fetch_assoc();
+
+        // Asignar los valores a variables para usar en el HTML
+        $usuaNombre2 = $row["Usuario"];
+        $idd2 = $row["ID"];
+        $usuaContra2 = $row["Contraseña"];
+       
+        $nombre2 = $row["Nombre"];
+        $apellidop2 = $row["Apellidos"];
+       
+        $tipo2 = $row["TipoUsuario"];
+        
+        
+        
+        // ... Continuar con los demás campos ...
+    } else {
+        echo "No se encontraron resultados para el usuario '$usuario'.";
+    }
+
+    // Cerrar la conexión
+    $conn->close();
+                 
+                ?>
+
+<?php
+    // Obtén el nombre de usuario de alguna manera
+     $nombreUsuario = $idd2; // Esto es un ejemplo, debes obtener el nombre de usuario de acuerdo a tu lógica
+     //echo $idd;
+    if ($nombreUsuario) {
+    // Escapa el nombre de usuario para asegurarte de que sea seguro para la URL
+        $nombreUsuarioURL = urlencode($nombreUsuario);
+    
+       // Genera la URL de la imagen con el nombre de usuario como parámetro
+      $urlImagen = "mostrar2.php?id=$nombreUsuarioURL";
+
+       // Muestra la imagen
+        echo "<img src='$urlImagen' alt=''  >";
+    } else {
+         echo "No se ha especificado un nombre de usuario.";
+    }
+    ?>
                     
-                    <img src="../imagenes_usuarios/gatitochamba.jpg" alt="img" >
+                  <!--  <img src="../imagenes_usuarios/gatitochamba.jpg" alt="img" > -->
                     <span class="estado-usuario enlinea"></span>
                 </div>
                 <div class="cuerpo">
@@ -308,8 +443,28 @@ if (isset($_GET['username'])) {
                             </li>
                         </ul>
                     </div>
-                    <div class="avatar">
-                        <img src="../img/user.jpeg" alt="img">
+                    <div class="avatar">';
+
+                    
+    // Obtén el nombre de usuario de alguna manera
+     $nombreUsuario = $idd; // Esto es un ejemplo, debes obtener el nombre de usuario de acuerdo a tu lógica
+     //echo $idd;
+    if ($nombreUsuario) {
+    // Escapa el nombre de usuario para asegurarte de que sea seguro para la URL
+        $nombreUsuarioURL = urlencode($nombreUsuario);
+    
+       // Genera la URL de la imagen con el nombre de usuario como parámetro
+      $urlImagen = "mostrar2.php?id=$nombreUsuarioURL";
+
+       // Muestra la imagen
+        echo "<img src='$urlImagen' alt=''  >";
+    } else {
+         echo "No se ha especificado un nombre de usuario.";
+    }
+  
+
+                       // <img src="../img/user.jpeg" alt="img">
+                       echo '
                     </div>
                 </div>';
 
@@ -340,9 +495,24 @@ if (isset($_GET['username'])) {
                     
                     echo '
                     <div class="mensaje">
-                    <div class="avatar">
-                        <img src="../imagenes_usuarios/gatitochamba.jpg" alt="img">
-                    </div>
+                    <div class="avatar">';
+                     // Obtén el nombre de usuario de alguna manera
+     $nombreUsuario = $idd2; // Esto es un ejemplo, debes obtener el nombre de usuario de acuerdo a tu lógica
+     //echo $idd;
+    if ($nombreUsuario) {
+    // Escapa el nombre de usuario para asegurarte de que sea seguro para la URL
+        $nombreUsuarioURL = urlencode($nombreUsuario);
+    
+       // Genera la URL de la imagen con el nombre de usuario como parámetro
+      $urlImagen = "mostrar2.php?id=$nombreUsuarioURL";
+
+       // Muestra la imagen
+        echo "<img src='$urlImagen' alt=''  >";
+    } else {
+         echo "No se ha especificado un nombre de usuario.";
+    }
+                        //<img src="../imagenes_usuarios/gatitochamba.jpg" alt="img">
+                        echo '</div>
                     <div class="cuerpo">
                         
                         <div class="texto">
