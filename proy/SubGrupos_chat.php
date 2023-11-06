@@ -171,8 +171,9 @@ if (isset($_GET['username'])) {
                  // Realizar la consulta a la base de datos
                   
                   $username = $_GET['username'];
-                  $id_grupo = $_GET['id_grupo'];
-                  $grupo = $_GET['grupo'];
+                  $id_grupo = $_GET['id_grupo'];//subgrupo
+                  $grupo = $_GET['grupo'];//subgrupo
+                  $id_grupo2 = $_GET['idgrupo2']; //grupo origen
 
                   
                 ?>
@@ -211,175 +212,7 @@ if (isset($_GET['username'])) {
 
     
     <div class="chat-container">
-    <div class="chat-sidebar">
-                
-                <div class="usuario-seleccionado">
-                    
-                        <div class="avatar ">
-
-                        <?php
-    // Obtén el nombre de usuario de alguna manera
-     $nombreUsuario = $id_grupo; // Esto es un ejemplo, debes obtener el nombre de usuario de acuerdo a tu lógica
-     //echo $idd;
-    if ($nombreUsuario) {
-    // Escapa el nombre de usuario para asegurarte de que sea seguro para la URL
-        $nombreUsuarioURL = urlencode($nombreUsuario);
-    
-       // Genera la URL de la imagen con el nombre de usuario como parámetro
-      $urlImagen = "mostrar3.php?id=$nombreUsuarioURL";
-
-       // Muestra la imagen
-        echo "<img style='border-radius: 50%; width: 55px;' class='tamañoImagengrupoPanel' src='$urlImagen' alt=''  >";
-    } else {
-         echo "No se ha especificado un nombre de usuario.";
-    }
-    ?>
-                            
-                        <!--
-                            <img style="border-radius: 50%; width: 55px;" class="tamañoImagengrupoPanel" src="../img_grupos/gatitoPuño.jpg" alt="img">
-                        -->
-                            <!-- <i class='bx bxs-group'   ></i> -->
-                        </div>
-                        <div class="cuerpo">
-                            <span><?php echo $grupo; ?></span>
-                            <!-- <span>Activo - Escribiendo...</span> -->
-                        </div>
-                        <div class="opciones">
-                            <ul> 
-                                <li>
-                                    <button type="button" onclick="mostrarVentanaEmergenteSubCrearGrupos()" style="width: 110px; border-radius: 10% ;"> <h6>Crear SubGrupo</h6><i class='bx bx-plus'></i>
-                                </button>
-                                </li> 
-        
-                            </ul>
-                        </div>
-
-                </div>
-
-            <!-- <nav id="Menu">
-                <div id="ChatMenu">
-                    <a class ="nav_link" href="#">Chat</a>
-                </div>     -->
-                <!-- aqui parece el menu segun hemos selecionado en la barra superior 
-                
-            </nav>-->
-
-            <!-- <h3>  <img src="/imagenes_usuarios/patricio.jpg" alt="Chat 1" class="chat-icon">patricio 
-                <span class="regs"> <a href="#" id="registroLink">Cerrar sesión</a></span></h3>
-            <h2>Bandeja de Chats</h2> -->
-           
-            <ul class="chat-list">
-            <?php
-                 // Realizar la consulta a la base de datos
-                  include('conexion.php');  // Incluye el archivo de conexión
-                  if ($conn->connect_error) {
-                    die("Error de conexión a la base de datos: " . $conn->connect_error);
-                }
-                  $username = $_GET['username'];
-
-                  $sql = "SELECT S.ID, S.Nombre, S.GrupoPrincipal_ID, S.Fecha_creacion, S.Descripcion, S.Imagen
-                  FROM Subgrupo AS S
-                  INNER JOIN MiembrosSubgrupo AS MS ON S.ID = MS.SubgrupoID
-                  WHERE MS.UsuarioID = $idd AND S.GrupoPrincipal_ID = $id_grupo";
-                 $result = $conn->query($sql);
-
-                 if (!$result) {
-                    die("Error en la consulta: " . $conn->error);
-                }
-                
-
-                
-                  // Verificar si se obtuvieron resultados
-                 if ($result->num_rows > 0) {
-                    ///$row = $resultConsulta->fetch_assoc();
-                 // Iterar sobre los resultados y generar las opciones del select
-                  while ($row = $result->fetch_assoc()) {
-                  //echo "<option value='" . $row["Id"] . "'>" . $row["Nombre"] . "</option>";
-                  echo '<li class="chat-list-item" id="chat' . $row["ID"] . '">
-                    
-                    
-                    
-                  <div class="usuario-info-chat">';
-                 
-                  // Obtén el nombre de usuario de alguna manera
-                   $nombreUsuario = $row["ID"]; // Esto es un ejemplo, debes obtener el nombre de usuario de acuerdo a tu lógica
-                  // echo $nombreUsuario;
-                  if ($nombreUsuario) {
-                  // Escapa el nombre de usuario para asegurarte de que sea seguro para la URL
-                      $nombreUsuarioURL = urlencode($nombreUsuario);
-                  
-                     // Genera la URL de la imagen con el nombre de usuario como parámetro
-                    $urlImagen = "mostrar4.php?id=$nombreUsuarioURL";
-              
-                     // Muestra la imagen
-                      echo "<img src='$urlImagen' alt='Imagen desde la base de datos'  class='chat-icon'>";
-                  } else {
-                       echo "No se ha especificado un nombre de usuario.";
-                  }
-                  
-
-                      //<img src="../img_grupos/cruzcruz.jpg" alt="Chat 1" class="chat-icon">
-                      echo '<!-- <span class="estado-usuario enlinea"></span> -->
-                  <!-- <i class="bx bxs-group" ></i> -->
-
-                  </div>
-                  <span> ' . $row["Nombre"] . '</span> 
-                  
-                   </li>';
-                 
-                  }
-                }else {
-                   //echo "<option value=''>No hay opciones disponibles</option>";
-                }
-                ?>
-
-            </ul>
-
-
-            <script>
-
-
-         const chatItems = document.querySelectorAll('.chat-list-item');
-
-    // Agrega un evento de clic a cada elemento
-    chatItems.forEach(item => {
-        var chatContent = document.getElementById("chat-content");
-        function cambiarChat(contenido) {
-                 // Agregar el contenido al chat actual
-                 chatContent.innerHTML = contenido;
-             }
-
-        item.addEventListener('click', function() {
-            var chatContent = document.getElementById("chat-content");
-            // Obtén el ID del elemento
-            const id = item.id.replace('chat', '');
-
-            // Obtén el nombre de usuario
-            const username = this.querySelector('span').innerText;
-
-            window.location.href = 'SubGrupos_chat.php?id_grupo=' + id + '&grupo=' + username + '&username=<?php echo $username; ?>'+ '&idgrupo2=<?php echo $id_grupo; ?>';
-
-           
-
-          
-    
-
-            
-           
-        });
-    });
-
-      
-    </script>
-
-
-
-
-            <div id="Grupos_list_container">
-                <!-- Aquí se mostrará la lista de grupos -->
-            </div>
-            
-        </div>
+   
         
         <div class="chat-main">
             
@@ -396,7 +229,7 @@ if (isset($_GET['username'])) {
         $nombreUsuarioURL = urlencode($nombreUsuario);
     
        // Genera la URL de la imagen con el nombre de usuario como parámetro
-      $urlImagen = "mostrar3.php?id=$nombreUsuarioURL";
+      $urlImagen = "mostrar4.php?id=$nombreUsuarioURL";
 
        // Muestra la imagen
         echo "<img class='tamañoImagengrupoPanel' src='$urlImagen' alt=''  >";
@@ -427,12 +260,10 @@ if (isset($_GET['username'])) {
                             <!-- <button type="button"  title="SubGrupos"  ></button><i class='bx bx-list-ul'></i> -->
                                 
                                     
-                                    <a id="TareasBarraSuperior" class ="nav_link" href="../php/SubGrupos.html">
-                                        <button style="width: 110px; border-radius:0% ;" type="button"  title="SubGrupos">SubGrupos
-                                        <i class='bx bx-list-ul'></i>
-                                        </button>
-                                            
-                                    
+                            <a id="TareasBarraSuperior" class ="nav_link" href="../php/Tareas.html">
+                                        <button style="width: 80px; border-radius:0% ;" type="button"  title="Tareas">Tareas <i class='bx bx-edit'></i>
+                                        </button>  
+                                        
                                     </a> 
                                 
                         </li> 
@@ -467,21 +298,25 @@ if (isset($_GET['username'])) {
                 }
 
                   $sql = "SELECT
-                  mg.ID AS MensajeID,
-                  mg.Contenido AS MensajeContenido,
-                  mg.FechaEnvio AS FechaEnvio,
+                  msg.ID AS MensajeID,
+                  msg.Contenido AS MensajeContenido,
+                  msg.FechaEnvio AS FechaEnvio,
                   u.Usuario AS RemitenteUsuario,
                   u.ID AS RemitenteID,
-                  g.ID AS GrupoID,
+                  sg.ID AS SubgrupoID,
+                  sg.Nombre AS NombreSubgrupo,
+                  sg.GrupoPrincipal_ID AS GrupoPrincipalID,
                   g.Nombre AS NombreGrupo,
                   CONCAT(
-                      TIMESTAMPDIFF(HOUR, mg.FechaEnvio, NOW()), ' horas ',
-                      MOD(TIMESTAMPDIFF(MINUTE, mg.FechaEnvio, NOW()), 60), ' minutos'
+                      TIMESTAMPDIFF(HOUR, msg.FechaEnvio, NOW()), ' horas ',
+                      MOD(TIMESTAMPDIFF(MINUTE, msg.FechaEnvio, NOW()), 60), ' minutos'
                   ) AS DiferenciaTiempo
-              FROM Mensajes_grupo mg
-              JOIN Usuarios u ON mg.RemitenteID = u.ID
-              JOIN Grupo g ON mg.Grupo_ID = g.ID
-              WHERE g.ID = $id_grupo  ORDER BY FechaEnvio asc";
+              FROM Mensajes_Subgrupo AS msg
+              JOIN Usuarios AS u ON msg.RemitenteID = u.ID
+              JOIN Subgrupo AS sg ON msg.Subgrupo_ID = sg.ID
+              JOIN Grupo AS g ON sg.GrupoPrincipal_ID = g.ID
+              WHERE sg.ID  = $id_grupo
+              ORDER BY FechaEnvio ASC;";
                  $result = $conn->query($sql);
                 ?>
 
@@ -601,11 +436,12 @@ if (isset($_GET['username'])) {
 
             </div>
             <div class="panel-escritura">
-                 <form class="textarea" action="enviarm_grupo.php" method="post">
+                 <form class="textarea" action="enviarm_Subgrupo.php" method="post">
                  <input type="hidden" name="usuario" value="<?php echo $username; ?>">
                  <input type="hidden" name="id_usuario" value="<?php echo $ID; ?>">
                  <input type="hidden" name="grupo" value="<?php echo $grupo; ?>">
                  <input type="hidden" name="id_grupo" value="<?php echo $id_grupo; ?>">
+                 <input type="hidden" name="id_grupo_o" value="<?php echo $id_grupo2; ?>">
                      <div class="opcines">
                          <button type="button">
                              <i class="bx bx-file-blank" style="color: black;"></i>
@@ -661,8 +497,8 @@ if (isset($_GET['username'])) {
 
                   $sql = "SELECT Usuarios.ID, Usuarios.Usuario, Usuarios.Apellidos
                   FROM Usuarios
-                  LEFT JOIN MiembrosGrupo ON Usuarios.ID = MiembrosGrupo.UsuarioID AND MiembrosGrupo.GrupoID = $id_grupo
-                  WHERE MiembrosGrupo.ID IS NULL  and Usuario != '$username'";
+                  LEFT JOIN MiembrosSubgrupo ON Usuarios.ID = MiembrosSubgrupo.UsuarioID AND MiembrosSubgrupo.SubgrupoID = $id_grupo
+                  WHERE MiembrosSubgrupo.ID IS NULL AND Usuarios.Usuario != '$username'";
                  $result = $conn->query($sql);
                   // Verificar si se obtuvieron resultados
                   if ($result->num_rows > 0) {
@@ -742,7 +578,7 @@ if (isset($_GET['username'])) {
             const username = this.querySelector('span').innerText;
 
             // Redirige a otra página con los parámetros id y username
-            window.location.href = 'agregarmimembrogrupo.php?id=' + id + '&usuario=' + username + '&id_grupo=<?php echo $id_grupo; ?>&nombre_grupo=<?php echo $grupo; ?>&usuarioc=<?php echo $username; ?>';
+            window.location.href = 'agregarmimembroSubgrupo.php?id=' + id + '&usuario=' + username + '&id_grupo=<?php echo $id_grupo; ?>&nombre_grupo=<?php echo $grupo; ?>&usuarioc=<?php echo $username; ?>&grupo_o=<?php echo $id_grupo2; ?>';
 
         });
     });
@@ -873,12 +709,15 @@ if (isset($_GET['username'])) {
                   $sql = "SELECT
                   U.ID AS IDUsuario,
                   U.Usuario AS NombreUsuario,
-                  MG.GrupoID,
+                  MS.SubgrupoID,
+                  SG.Nombre AS NombreSubgrupo,
+                  SG.GrupoPrincipal_ID AS GrupoPrincipalID,
                   G.Nombre AS NombreGrupo
-                  FROM Usuarios U
-                  INNER JOIN MiembrosGrupo MG ON U.ID = MG.UsuarioID
-                  INNER JOIN Grupo G ON MG.GrupoID = G.ID
-                  WHERE MG.GrupoID = $id_grupo";
+              FROM Usuarios U
+              INNER JOIN MiembrosSubgrupo MS ON U.ID = MS.UsuarioID
+              INNER JOIN Subgrupo SG ON MS.SubgrupoID = SG.ID
+              INNER JOIN Grupo G ON SG.GrupoPrincipal_ID = G.ID
+              WHERE SG.GrupoPrincipal_ID = $id_grupo2 and SubgrupoID =$id_grupo";
                    $result = $conn->query($sql);
                   // Verificar si se obtuvieron resultados
                   if ($result->num_rows > 0) {

@@ -69,7 +69,43 @@ CREATE TABLE Mensajes_Subgrupo (
     FOREIGN KEY (RemitenteID) REFERENCES Usuarios(ID),
     FOREIGN KEY (Subgrupo_ID) REFERENCES Subgrupo(ID)
 );
+CREATE TABLE MiembrosSubgrupo (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    UsuarioID INT NOT NULL,
+    SubgrupoID INT NOT NULL,
+    FechaUnion DATETIME,
+    FOREIGN KEY (UsuarioID) REFERENCES Usuarios(ID),
+    FOREIGN KEY (SubgrupoID) REFERENCES Subgrupo(ID)
+);
 
+DELIMITER //
+
+CREATE PROCEDURE InsertarSubgrupo(
+    IN nombreGrupo VARCHAR(100),
+    IN grupoPrincipalID INT,
+    IN descripcionSubgrupo VARCHAR(100),
+    IN imagenSubgrupo BLOB,
+    IN creadorID INT
+)
+BEGIN
+    DECLARE fechaCreacion DATETIME;
+    SET fechaCreacion = NOW();
+    
+    -- Insertar el subgrupo en la tabla Subgrupo
+    INSERT INTO Subgrupo (Nombre, GrupoPrincipal_ID, Fecha_creacion, Descripcion, Imagen)
+    VALUES (nombreGrupo, grupoPrincipalID, fechaCreacion, descripcionSubgrupo, imagenSubgrupo);
+    
+    -- Obtener el ID del nuevo subgrupo
+    SELECT LAST_INSERT_ID() INTO @NuevoSubgrupoID;
+    
+    -- Insertar el creador del subgrupo en la tabla MiembrosSubgrupo
+    INSERT INTO MiembrosSubgrupo (UsuarioID, SubgrupoID, FechaUnion)
+    VALUES (creadorID, @NuevoSubgrupoID, fechaCreacion);
+    
+    SELECT @NuevoSubgrupoID AS NuevoSubgrupoID;
+END;
+//
+DELIMITER ;
 
 
 
@@ -129,3 +165,8 @@ VALUES ('Hola, este es un mensaje del usuario 1 al grupo 1', NOW(), 1, 1);
 INSERT INTO Mensajes_grupo (Contenido, FechaEnvio, RemitenteID, Grupo_ID)
 VALUES ('Hola, este es un mensaje del usuario 2 al grupo 1', NOW(), 2, 1);
 
+select * from subgrupo;
+
+SELECT ID, Nombre, Fecha_creacion, Descripcion, Imagen
+FROM Subgrupo
+WHERE GrupoPrincipal_ID = 7;
