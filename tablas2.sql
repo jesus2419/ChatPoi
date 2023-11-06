@@ -80,14 +80,15 @@ DELIMITER $$
 CREATE PROCEDURE CrearGrupoConMiembro(
     IN p_Nombre VARCHAR(100),
     IN p_Descripcion VARCHAR(100),
-    IN p_CreadorID INT
+    IN p_CreadorID INT,
+    IN p_ImagenBlob BLOB
 )
 BEGIN
     DECLARE v_GrupoID INT;
     
     -- Insertar el grupo en la tabla Grupo
-    INSERT INTO Grupo (Nombre, Descripcion, Fecha_creacion, Creador_ID)
-    VALUES (p_Nombre, p_Descripcion, NOW(), p_CreadorID);
+    INSERT INTO Grupo (Nombre, Descripcion, Fecha_creacion, Creador_ID, ImagenBlop)
+    VALUES (p_Nombre, p_Descripcion, NOW(), p_CreadorID, p_ImagenBlob);
     
     -- Obtener el ID del grupo recién insertado
     SET v_GrupoID = LAST_INSERT_ID();
@@ -100,8 +101,18 @@ END $$
 DELIMITER ;
 
 
+DELIMITER ;
+
+
 
 DELIMITER ;
+
+select  ID ,
+    Nombre ,
+	Descripcion  ,
+    Fecha_creacion  ,
+    Creador_ID ,
+    ImagenBlop from grupo;
 SELECT * FROM Usuarios WHERE Usuario = 'jesus';
 select ID,
     Usuario,

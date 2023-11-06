@@ -49,6 +49,30 @@ CREATE TABLE MensajeUsuario (
     FOREIGN KEY (RemitenteID) REFERENCES Usuarios(ID)
 );
 
+CREATE TABLE Subgrupo (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre VARCHAR(100) NOT NULL,
+    GrupoPrincipal_ID INT NOT NULL,
+    Fecha_creacion DATETIME,
+    Descripcion VARCHAR(100),
+    Imagen BLOB,
+    FOREIGN KEY (GrupoPrincipal_ID) REFERENCES Grupo(ID)
+);
+
+CREATE TABLE Mensajes_Subgrupo (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Contenido TEXT NOT NULL,
+    FechaEnvio DATETIME,
+    RemitenteID INT NOT NULL,
+    Subgrupo_ID INT NOT NULL,
+    Imagen BLOB,  -- Agregar el campo Imagen de tipo BLOB
+    FOREIGN KEY (RemitenteID) REFERENCES Usuarios(ID),
+    FOREIGN KEY (Subgrupo_ID) REFERENCES Subgrupo(ID)
+);
+
+
+
+
 DELIMITER $$
 
 CREATE PROCEDURE InsertarUsuario(

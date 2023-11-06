@@ -211,7 +211,104 @@ if (isset($_GET['username'])) {
 
     
     <div class="chat-container">
+    <div class="chat-sidebar">
+                
+                <div class="usuario-seleccionado">
+                    
+                        <div class="avatar ">
+
+                        <?php
+    // Obtén el nombre de usuario de alguna manera
+     $nombreUsuario = $id_grupo; // Esto es un ejemplo, debes obtener el nombre de usuario de acuerdo a tu lógica
+     //echo $idd;
+    if ($nombreUsuario) {
+    // Escapa el nombre de usuario para asegurarte de que sea seguro para la URL
+        $nombreUsuarioURL = urlencode($nombreUsuario);
+    
+       // Genera la URL de la imagen con el nombre de usuario como parámetro
+      $urlImagen = "mostrar3.php?id=$nombreUsuarioURL";
+
+       // Muestra la imagen
+        echo "<img style='border-radius: 50%; width: 55px;' class='tamañoImagengrupoPanel' src='$urlImagen' alt=''  >";
+    } else {
+         echo "No se ha especificado un nombre de usuario.";
+    }
+    ?>
+                            
+                        <!--
+                            <img style="border-radius: 50%; width: 55px;" class="tamañoImagengrupoPanel" src="../img_grupos/gatitoPuño.jpg" alt="img">
+                        -->
+                            <!-- <i class='bx bxs-group'   ></i> -->
+                        </div>
+                        <div class="cuerpo">
+                            <span><?php echo $grupo; ?></span>
+                            <!-- <span>Activo - Escribiendo...</span> -->
+                        </div>
+                        <div class="opciones">
+                            <ul> 
+                                <li>
+                                    <button type="button" onclick="mostrarVentanaEmergenteSubCrearGrupos()" style="width: 110px; border-radius: 10% ;"> <h6>Crear SubGrupo</h6><i class='bx bx-plus'></i>
+                                </button>
+                                </li> 
         
+                            </ul>
+                        </div>
+
+                </div>
+
+            <!-- <nav id="Menu">
+                <div id="ChatMenu">
+                    <a class ="nav_link" href="#">Chat</a>
+                </div>     -->
+                <!-- aqui parece el menu segun hemos selecionado en la barra superior 
+                
+            </nav>-->
+
+            <!-- <h3>  <img src="/imagenes_usuarios/patricio.jpg" alt="Chat 1" class="chat-icon">patricio 
+                <span class="regs"> <a href="#" id="registroLink">Cerrar sesión</a></span></h3>
+            <h2>Bandeja de Chats</h2> -->
+           
+            <ul class="chat-list">
+                <li class="chat-list-item" id="chat1">
+                    
+                    
+                    
+                    <div class="usuario-info-chat">
+                        <img src="../img_grupos/cruzcruz.jpg" alt="Chat 1" class="chat-icon">
+                    <!-- <span class="estado-usuario enlinea"></span> -->
+                    <!-- <i class='bx bxs-group' ></i> -->
+
+                    </div>
+                    <span> sub Grupo 1</span> 
+                    
+                </li>
+                <li class="chat-list-item" id="chat2">
+                    <div class="usuario-info-chat">
+                        <img src="../img_grupos/gatitoPuño.jpg" alt="Chat 2" class="chat-icon">
+                        <!-- <span class="estado-usuario enlinea"></span> -->
+                        <!-- <i class='bx bxs-group' ></i> -->
+                    </div>
+                    <span>sub Grupo 2</span>
+                </li>
+                <li class="chat-list-item" id="chat3">
+                    <div class="usuario-info-chat">
+                        <img src="../img_grupos/ranita.jpg" alt="Chat 3" class="chat-icon">
+                        <!-- <span class="estado-usuario desconectado"></span> -->
+                        <!-- <i class='bx bxs-group' ></i> -->
+                    </div>
+                    <span>sub Grupo 3</span>
+                    
+                </li>
+            </ul>
+
+
+
+
+            <div id="Grupos_list_container">
+                <!-- Aquí se mostrará la lista de grupos -->
+            </div>
+            
+        </div>
         
         <div class="chat-main">
             
@@ -581,7 +678,79 @@ if (isset($_GET['username'])) {
 </script>
 
 
+<!-- ventana emergente  crear SubGrupo-->
+<div id="miVentanaEmergenteSubCrearGrupos" class="popup">
+    <div class="popup-content">
+        <button type="button" class="close-button" onclick="cerrarVentanaEmergenteSubCrearGrupos()">&times;</button>
+        <form action="crear_subgrupo.php" method="post" enctype="multipart/form-data">
 
+
+            <input type="hidden" name="id_grupo" value="<?php echo  $id_grupo; ?>">
+            <input type="hidden" name="grupo" value="<?php echo $grupo; ?>">
+            <input type="hidden" name="usuarioid" value="<?php echo $idd; ?>">
+            <input type="hidden" name="usuario" value="<?php echo $_GET['username']; ?>">
+
+              
+            <div class="chat-main">
+                <div class="form-group">
+                    <label for="nombreGrupo">Nombre del SubGrupo:</label>
+                    <input type="text" id="nombreGrupo" name="nombreGrupo" placeholder="Ingrese el nombre del grupo" required>
+                </div>
+                <div class="form-group">
+                    <label for="descripcionGrupo">Descripción del SubGrupo:</label>
+                    <textarea id="descripcionGrupo" name="descripcionGrupo" rows="4" placeholder="Ingrese la descripción del grupo" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="fotoGrupo">Foto del SubGrupo:</label>
+                    <input type="file" id="fotoGrupo" name="fotoGrupo" accept="image/*" onchange="mostrarImagen()">
+
+                    
+                </div>
+                <div class="form-group">
+                    <img id="imagenMostrada" src="" alt="Imagen del grupo" style="max-width: 100%; display: none;">
+                </div>
+            </div>
+
+            <button type="submit" class="submit-button" onclick="enviarDatos()">Enviar</button>
+        </form>
+
+
+
+        <!--
+        <form>
+            <div class="chat-main">
+
+            
+                <input type="hidden" name="id_grupo" value="<?php //echo  $id_grupo; ?>">
+                <input type="hidden" name="grupo" value="<?php //echo $grupo; ?>">
+
+
+                <div class="form-group">
+                    <label for="nombreGrupo">Nombre del SubGrupo:</label>
+                    <input type="text" id="nombreGrupo" name="nombreGrupo" placeholder="Ingrese el nombre del grupo" required>
+                </div>
+                <div class="form-group">
+                    <label for="descripcionGrupo">Descripción del SubGrupo:</label>
+                    <textarea id="descripcionGrupo" name="descripcionGrupo" rows="4" placeholder="Ingrese la descripción del grupo" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="fotoGrupo">Foto del SubGrupo:</label>
+                    <input type="file" id="fotoGrupo" name="fotoGrupo" accept="image/*" onchange="mostrarImagen()">
+
+                    
+                </div>
+                <div class="form-group">
+                    <img id="imagenMostrada" src="" alt="Imagen del grupo" style="max-width: 100%; display: none;">
+                </div>
+            </div>
+
+            <button type="button" class="submit-button" onclick="enviarDatos()">Enviar</button>
+        </form>
+
+-->
+
+    </div>
+</div>
 <!-- ventana emergente  crear Grupo-->
 <div id="miVentanaEmergenteCrearGrupos" class="popup">
     <div class="popup-content">

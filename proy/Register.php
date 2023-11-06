@@ -41,7 +41,7 @@
       <center><h2 class = "RegistroTitulo">Registro</h2></center>
     </div>
    
-    <form action="insertar_usuario.php" method="post" enctype="multipart/form-data">>
+    <form action="insertar_usuario.php" method="post" enctype="multipart/form-data">
 
       <!-- nombre usuario -->
       <div class="input-box-Registro">
@@ -84,7 +84,7 @@
          <div class="input-box-Registro">
 
 <label for="tipo_usuario"><b>Tipo de Usuario:</b></label>
-<select id="tipo_usuario" name="tipo_usuario"  required>
+<select id="tipo_usuario" class ="ComboOpciones" name="tipo_usuario"  required>
    <option value="Alumno">Alumno</option>
    <option value="Maestro">Maestro</option>
 </select>

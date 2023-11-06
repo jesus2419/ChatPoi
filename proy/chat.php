@@ -175,7 +175,7 @@ if (isset($_GET['username'])) {
     }
     ?>
           <!--  <img src="../img/user.jpeg" alt = "User"  >  -->
-            <h3 id="NombreUsurio"><?php echo $_GET['username']; ?></h3>
+            <h3 id="NombreUsurio"><?php echo $_GET['username'], " ", $tipo; ?></h3>
         </a>
         <nav>
             <a id="GuposBarraSuperior" class ="nav_link" href="Grupos.php?username=<?php echo urlencode($_GET['username']); ?>">Grupos</a>
