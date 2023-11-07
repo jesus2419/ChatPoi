@@ -58,6 +58,42 @@ CREATE TABLE MensajeUsuario (
     FOREIGN KEY (RemitenteID) REFERENCES Usuarios(ID)
 );
 
+CREATE TABLE Usuarios (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Usuario VARCHAR(255) NOT NULL,
+    Contraseña VARCHAR(255) NOT NULL,
+    Nombre VARCHAR(255) NOT NULL,
+    Apellidos VARCHAR(255) NOT NULL,
+    Telefono VARCHAR(15),
+    TipoUsuario VARCHAR(20) NOT NULL,
+    ImagenBlop BLOB
+);
+CREATE TABLE Subgrupo (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre VARCHAR(100) NOT NULL,
+    GrupoPrincipal_ID INT NOT NULL,
+    Fecha_creacion DATETIME,
+    Descripcion VARCHAR(100),
+    Imagen BLOB,
+    FOREIGN KEY (GrupoPrincipal_ID) REFERENCES Grupo(ID)
+);
+
+CREATE TABLE MiembrosSubgrupo (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    UsuarioID INT NOT NULL,
+    SubgrupoID INT NOT NULL,
+    FechaUnion DATETIME,
+    FOREIGN KEY (UsuarioID) REFERENCES Usuarios(ID),
+    FOREIGN KEY (SubgrupoID) REFERENCES Subgrupo(ID)
+);
+
+
+SELECT S.ID, S.Nombre, S.GrupoPrincipal_ID, S.Fecha_creacion, S.Descripcion, S.Imagen
+FROM Subgrupo AS S
+INNER JOIN MiembrosSubgrupo AS MS ON S.ID = MS.SubgrupoID
+WHERE MS.UsuarioID = 6 AND S.GrupoPrincipal_ID = 7;
+
+
 DELIMITER $$
 
 CREATE PROCEDURE InsertarUsuario(
@@ -235,4 +271,68 @@ LEFT JOIN Usuarios UM ON MG.UsuarioID = UM.ID;
 
 
 SELECT mg.ID AS MensajeID, mg.Contenido AS MensajeContenido, mg.FechaEnvio AS FechaEnvio, u.Usuario AS RemitenteUsuario, u.ID AS RemitenteID, g.ID AS GrupoID, g.Nombre AS NombreGrupo, CONCAT( TIMESTAMPDIFF(HOUR, mg.FechaEnvio, NOW()), ' horas ', MOD(TIMESTAMPDIFF(MINUTE, mg.FechaEnvio, NOW()), 60), ' minutos' ) AS DiferenciaTiempo FROM Mensajes_grupo mg JOIN Usuarios u ON mg.RemitenteID = u.ID JOIN Grupo g ON mg.Grupo_ID = g.ID WHERE g.ID = 1 ORDER BY FechaEnvio asc
+;
+SELECT
+    msg.ID AS MensajeID,
+    msg.Contenido AS MensajeContenido,
+    msg.FechaEnvio AS FechaEnvio,
+    u.Usuario AS RemitenteUsuario,
+    u.ID AS RemitenteID,
+    sg.ID AS SubgrupoID,
+    sg.Nombre AS NombreSubgrupo,
+    sg.GrupoPrincipal_ID AS GrupoPrincipalID,
+    g.Nombre AS NombreGrupo,
+    CONCAT(
+        TIMESTAMPDIFF(HOUR, msg.FechaEnvio, NOW()), ' horas ',
+        MOD(TIMESTAMPDIFF(MINUTE, msg.FechaEnvio, NOW()), 60), ' minutos'
+    ) AS DiferenciaTiempo
+FROM Mensajes_Subgrupo AS msg
+JOIN Usuarios AS u ON msg.RemitenteID = u.ID
+JOIN Subgrupo AS sg ON msg.Subgrupo_ID = sg.ID
+JOIN Grupo AS g ON sg.GrupoPrincipal_ID = g.ID
+WHERE sg.GrupoPrincipal_ID = 7
+ORDER BY FechaEnvio ASC;
 
+
+
+SELECT
+                  U.ID AS IDUsuario,
+                  U.Usuario AS NombreUsuario,
+                  MS.SubgrupoID,
+                  SG.Nombre AS NombreSubgrupo,
+                  SG.GrupoPrincipal_ID AS GrupoPrincipalID,
+                  G.Nombre AS NombreGrupo
+              FROM Usuarios U
+              INNER JOIN MiembrosSubgrupo MS ON U.ID = MS.UsuarioID
+              INNER JOIN Subgrupo SG ON MS.SubgrupoID = SG.ID
+              INNER JOIN Grupo G ON SG.GrupoPrincipal_ID = G.ID
+              WHERE SG.GrupoPrincipal_ID = 7 and SubgrupoID = 1;
+              
+              
+              SELECT
+                  msg.ID AS MensajeID,
+                  msg.Contenido AS MensajeContenido,
+                  msg.FechaEnvio AS FechaEnvio,
+                  u.Usuario AS RemitenteUsuario,
+                  u.ID AS RemitenteID,
+                  sg.ID AS SubgrupoID,
+                  sg.Nombre AS NombreSubgrupo,
+                  sg.GrupoPrincipal_ID AS GrupoPrincipalID,
+                  g.Nombre AS NombreGrupo,
+                  CONCAT(
+                      TIMESTAMPDIFF(HOUR, msg.FechaEnvio, NOW()), ' horas ',
+                      MOD(TIMESTAMPDIFF(MINUTE, msg.FechaEnvio, NOW()), 60), ' minutos'
+                  ) AS DiferenciaTiempo
+              FROM Mensajes_Subgrupo AS msg
+              JOIN Usuarios AS u ON msg.RemitenteID = u.ID
+              JOIN Subgrupo AS sg ON msg.Subgrupo_ID = sg.ID
+              JOIN Grupo AS g ON sg.GrupoPrincipal_ID = g.ID
+              WHERE sg.ID = 1
+              ORDER BY FechaEnvio ASC;
+              
+              
+              SELECT Grupo.ID AS IDGrupo, Grupo.Nombre AS NombreGrupo
+                  FROM Grupo
+                  INNER JOIN MiembrosGrupo ON Grupo.ID = MiembrosGrupo.GrupoID
+                  INNER JOIN Usuarios ON MiembrosGrupo.UsuarioID = Usuarios.ID
+                  WHERE Usuarios.Usuario ='alex'

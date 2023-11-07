@@ -170,3 +170,6 @@ select * from subgrupo;
 SELECT ID, Nombre, Fecha_creacion, Descripcion, Imagen
 FROM Subgrupo
 WHERE GrupoPrincipal_ID = 7;
+
+
+

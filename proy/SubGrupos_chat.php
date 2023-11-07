@@ -259,11 +259,12 @@ if (isset($_GET['username'])) {
                         <li >
                             <!-- <button type="button"  title="SubGrupos"  ></button><i class='bx bx-list-ul'></i> -->
                                 
-                                    
-                            <a id="TareasBarraSuperior" class ="nav_link" href="../php/Tareas.html">
+                                    <a id="TareasBarraSuperior" class="nav_link" href="Tareas.php?username=<?php echo $username; ?>&grupo=<?php echo $grupo; ?>&id_grupo=<?php echo $id_grupo; ?>&idgrupo2=<?php echo $id_grupo2; ?>">
+                            <!--<a id="TareasBarraSuperior" class ="nav_link" href="Tareas.php?username= $username&grupo=$grupo&id_grupo=$id_grupo&idgrupo2= $id_grupo2">-->
                                         <button style="width: 80px; border-radius:0% ;" type="button"  title="Tareas">Tareas <i class='bx bx-edit'></i>
                                         </button>  
-                                        
+                                     
+
                                     </a> 
                                 
                         </li> 
