@@ -6,6 +6,7 @@
                 }
                   $id = $_GET['id'];
                   $grupo = $_GET['id_grupo'];
+                  $grupo_nombre = $_GET['grupon'];
                   $id_usuario = $_GET['id_usuario'];
                   $usuario = $_GET['usuario'];
                   $id_grupo2 = $_GET['id_grupo2'];
@@ -146,10 +147,17 @@
 
     } else {
 
+        
+                  
+
         $contenido2 = "<form action='subirTarea.php' method='post' enctype='multipart/form-data'>
 
-
-        
+        <input type='hidden' name='id' value='"; $contenido2 .=$id;$contenido2 .="'>
+        <input type='hidden' name='id_grupo' value='"; $contenido2 .=$grupo;$contenido2 .="'>
+        <input type='hidden' name='grupo' value='"; $contenido2 .= $grupo_nombre;$contenido2 .=" '>
+        <input type='hidden' name='usuarioid' value='"; $contenido2 .= $id_usuario;$contenido2 .="'>
+        <input type='hidden' name='usuario' value='"; $contenido2 .= $usuario;$contenido2 .="'>
+        <input type='hidden' name='grupo_o' value='"; $contenido2 .= $id_grupo2;$contenido2 .="'>
 
           
         <div class='chat-main'>

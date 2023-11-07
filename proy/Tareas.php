@@ -432,9 +432,12 @@ chatItems.forEach(item => {
         // Obtén el ID del elemento
         const id = item.id.replace('chat', '');
         const grupo = "<?php echo $id_grupo; ?>";
+        const grupon = "<?php echo $grupo; ?>";
         const id_usuario = "<?php echo $idd; ?>";
         const usuario = "<?php echo $username; ?>";
         const grupo_o = "<?php echo $id_grupo2; ?>";
+
+        
 
 
         // Obtén el nombre de usuario
@@ -446,7 +449,7 @@ chatItems.forEach(item => {
                 chatContent.innerHTML = contenido;
             }
 
-            var url = "selecTarea.php?id=" + id + "&id_grupo=" + grupo + "&id_usuario=" + id_usuario+ "&usuario=" + usuario+ "&id_grupo2=" + grupo_o;
+            var url = "selecTarea.php?id=" + id + "&id_grupo=" + grupo + "&grupon="+ grupon + "&id_usuario=" + id_usuario+ "&usuario=" + usuario+ "&id_grupo2=" + grupo_o;
 
 
             var xhttp = new XMLHttpRequest();

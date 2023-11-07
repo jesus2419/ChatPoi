@@ -9,6 +9,15 @@ if ($_FILES["archivo"]["error"] == 0) {
         die("Error de conexión: " . $conn->connect_error);
     }
 
+    
+    $descripcion = $_POST['descripcionGrupo'];
+    $grupo = $_POST['id_grupo'];
+    $grupo_nombre = $_POST['grupo'];
+    $id_usuario = $_POST['usuarioid'];
+    $usuario = $_POST['usuario'];
+    $id_grupo2 = $_POST['grupo_o'];
+    $id = $_POST['id'];
+    
     // Ruta temporal del archivo subido
     $archivo_temporal = $_FILES["archivo"]["tmp_name"];
 
@@ -19,7 +28,11 @@ if ($_FILES["archivo"]["error"] == 0) {
     $archivo_contenido = $conn->real_escape_string($archivo_contenido);
 
     // Insertar el archivo PDF en la base de datos
-    $sql = "INSERT INTO archivo (contenido) VALUES ('$archivo_contenido')";
+    //$sql = "INSERT INTO archivo (contenido) VALUES ('$archivo_contenido')";
+    
+
+    $sql = "CALL InsertarTareaSubGrupo($id, $id_usuario, '$descripcion', '$archivo_contenido', 1);";
+        
     if ($conn->query($sql) === true) {
         echo "El archivo PDF se ha subido y almacenado correctamente en la base de datos.";
     } else {
