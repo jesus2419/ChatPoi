@@ -122,6 +122,16 @@ if (isset($_GET['username'])) {
             cursor: pointer;
         }
 
+        
+        .chat-list-item2 {
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+            cursor: pointer;
+        }
+        .chat-list-item2:hover {
+           background-color
+        }
+
         .chat-list-item:last-child {
             border-bottom: none;
         }
@@ -671,7 +681,7 @@ if (isset($_GET['username'])) {
                      
                      echo '
 
-                     <li class="chat-list-item" id="chat'. $row["ID"] .'" onclick="mostrarInfoUsuario("chat1")">
+                     <li class="chat-list-item elemento-deseado" id="chat'. $row["ID"] .'" onclick="mostrarInfoUsuario("chat1")">
                     
                     
                     
@@ -730,10 +740,12 @@ if (isset($_GET['username'])) {
 </div>
 <script>
     // Obtén todos los elementos con la clase chat-list-item
-    const chatItems = document.querySelectorAll('.chat-list-item');
+    const chatItems2 = document.querySelectorAll('.elemento-deseado');
+
+    //const chatItems2 = document.querySelectorAll('.chat-list-item');
 
     // Agrega un evento de clic a cada elemento
-    chatItems.forEach(item => {
+    chatItems2.forEach(item => {
         item.addEventListener('click', function() {
             // Obtén el ID del elemento
             const id = item.id.replace('chat', '');
